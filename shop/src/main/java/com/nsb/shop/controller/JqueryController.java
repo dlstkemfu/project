@@ -86,6 +86,7 @@ public class JqueryController {
 		
 		if(result < 2) {
 		result = userService.userJoin(members);	
+		result = 1;
 		}
 		
 		

@@ -14,11 +14,18 @@ public class Members {
 	private String email;
 	private int authority;
 	private int declaration;
-	private Date birth;
-	private Date last_login;
-	private Date create_time;
-	private Date update_time;
-	
+	private String birth;
+
+	private Date createtime;
+
+	public String getBirth() {
+		return birth;
+	}
+
+	public void setBirth(String birth) {
+		this.birth = birth;
+	}
+
 	private String domain;
 
 	public int getId() {
@@ -101,36 +108,12 @@ public class Members {
 		this.declaration = declaration;
 	}
 
-	public Date getBirth() {
-		return birth;
+	public Date getCreatetime() {
+		return createtime;
 	}
 
-	public void setBirth(Date birth) {
-		this.birth = birth;
-	}
-
-	public Date getLast_login() {
-		return last_login;
-	}
-
-	public void setLast_login(Date last_login) {
-		this.last_login = last_login;
-	}
-
-	public Date getCreate_time() {
-		return create_time;
-	}
-
-	public void setCreate_time(Date create_time) {
-		this.create_time = create_time;
-	}
-
-	public Date getUpdate_time() {
-		return update_time;
-	}
-
-	public void setUpdate_time(Date update_time) {
-		this.update_time = update_time;
+	public void setCreatetime(Date createtime) {
+		this.createtime = createtime;
 	}
 
 	public String getDomain() {
