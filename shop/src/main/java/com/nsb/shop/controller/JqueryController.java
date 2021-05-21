@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,17 +24,12 @@ public class JqueryController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value="jquery/boardwrite",method = RequestMethod.POST)
-	@ResponseBody
-	public int boardwrite(Board board) {
-		int result = 0; 
-		result = boardService.boardwrite(board); 
-		return result;
-	}
+	
 	
 	@RequestMapping("jquery/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("loginUser");
+		session.removeAttribute("userId");
 		return "/user/login";
 	}
 	
@@ -43,6 +39,7 @@ public class JqueryController {
 		int result = 0; 
 		String col = null;
 		col = "userId";
+		
 		Members userIdCheck = userService.getUserOne(members.getUserId(),col);
 		if(userIdCheck == null) {
 			result = 2;
@@ -52,8 +49,9 @@ public class JqueryController {
 			//ID OK
 			if(members.getPassword().equals(userIdCheck.getPassword())) {
 				//PW OK 
+				session.setAttribute("userId", members.getUserId());
 				session.setAttribute("loginUser", userIdCheck);
-
+				
 				result = 3;
 			}else {
 				result = 2;
@@ -64,6 +62,19 @@ public class JqueryController {
 			result = 2;
 		}
 		}
+		
+		return result;
+	}
+	@RequestMapping(value="jquery/boardwrite",method = RequestMethod.POST)
+	@ResponseBody
+	public int boardwrite(@ModelAttribute Board board, HttpSession session) {
+		int result = 0; 
+		String users = (String)session.getAttribute("userId");
+				
+		
+	
+		board.setUsers(users);	
+		result = boardService.boardwrite(board); 
 		
 		return result;
 	}
@@ -92,5 +103,6 @@ public class JqueryController {
 		
 		return result;
 	}
+	
 	
 }

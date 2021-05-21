@@ -4,8 +4,12 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nsb.shop.logic.Board;
@@ -30,6 +34,7 @@ public class ViewController {
 
 	@RequestMapping(value = "view/boardwrite", method = RequestMethod.GET)
 	public ModelAndView boardwrite() {
+		
 		ModelAndView mav = new ModelAndView();
 		return mav;
 	}
@@ -42,5 +47,21 @@ public class ViewController {
 		mav.addObject("result",result);
 		return mav;
 	}
+	
+	@RequestMapping(value="view/boardDelete", method = RequestMethod.GET)
+		public ModelAndView boardDelete(@RequestParam("id")int id) {
+		
+		boardService.boardDelete(id);
+		ModelAndView mav = new ModelAndView("redirect:/view/dashboard");
+		return mav;
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 
 }

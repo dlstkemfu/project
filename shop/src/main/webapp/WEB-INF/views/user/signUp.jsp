@@ -67,7 +67,7 @@
 	}
 </script>
 </head>
-<body style="background-color: #f0f5f3">
+<body style="background-color: ffffff">
 	<form id="registerform">
 	<div class="fieldlabel">
 			<label for="name">*이름</label>
@@ -138,7 +138,11 @@
 			<label for="gender">*성별</label>
 		</div>
 		<div class="formfield">
-			<input type="text" id="gender" name="gender" maxlength="20" value="">
+			<input type="radio" id="male" name="gender" value="1">
+			<label for="male">남성</label><br>
+  			<input type="radio" id="female" name="gender" value="0">
+  			<label for="female">여성</label><br>
+			
 		</div>
 
 		<div class="fieldlabel">

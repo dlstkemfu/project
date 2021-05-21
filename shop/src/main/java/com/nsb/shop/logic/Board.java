@@ -15,12 +15,7 @@ public class Board {
 	private String users;
 	private Date updatetime ;
 	private Date createtime ;
-	@Override
-	public String toString() {
-		return "Board [id=" + id + ", views=" + views + ", category=" + category + ", title=" + title + ", region="
-				+ region + ", choose=" + choose + ", object=" + object + ", content=" + content + ", picture=" + picture
-				+ ", users=" + users + ", updatetime=" + updatetime + ", createtime=" + createtime + "]";
-	}
+	
 	public int getId() {
 		return id;
 	}

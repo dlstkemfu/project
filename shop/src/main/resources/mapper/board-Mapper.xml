@@ -8,7 +8,7 @@ SELECT * FROM board order BY id DESC;
 
 <insert id="boardwrite">
 insert into board (id,category,title,content,region,choose,object,price,users,views,createtime,updatetime) 
-values(#{id},null,#{title},#{content},null,null,null,null,null,#{views},now(),null);
+values(#{id},null,#{title},#{content},null,null,null,null,#{users},#{views},now(),null);
 </insert>
 
 <select id="getBoardDetail" resultType="board">
@@ -19,4 +19,10 @@ SELECT * FROM board where id = #{id};
 <update id="viewUpdate">
 UPDATE board SET views = views+1 WHERE id = #{id}
 </update>
+
+<!-- delete-->
+<delete id="boardDelete" parameterType="int">
+DELETE FROM board WHERE id = #{id}
+</delete>
+
 </mapper>

@@ -2,6 +2,8 @@ package com.nsb.shop.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,5 +31,9 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void viewsUpdate(int id) {
 	boardDAO.viewUpdate(id);}
+	
+	@Override
+	public int boardDelete(int id) {
+	return boardDAO.boardDelete(id);}
 
 }
