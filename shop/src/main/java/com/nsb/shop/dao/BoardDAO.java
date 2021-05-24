@@ -3,12 +3,9 @@ package com.nsb.shop.dao;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.nsb.shop.logic.Board;
 
@@ -46,4 +43,15 @@ public class BoardDAO {
 		
 		return sqlSession.delete("boardDelete", id);
 	}
+	
+	
+	
+public int boardUpdate(Board board) {
+		 
+		
+		
+		return sqlSession.update("boardUpdate", board );
+	
+	}
+	
 }

@@ -25,7 +25,7 @@
 <td>제목</td>
 <td>조회수</td>
 <td>내용</td>
-<td>첨부파일</td>
+<td>상품사진</td>
 <td>글 작성 날짜</td>
 </tr></thead>
 
@@ -35,7 +35,7 @@
 <td><a href="/view/boardDetail?id=${b.id }">${b.title }</a></td>
 <td>${b.views }</td>
 <td>${b.content }</td>
-<td>${b.picture }</td>
+<td>${b.img }</td>
 <td>${dateFormat_cr }</td>
 </tr>
 </c:forEach>

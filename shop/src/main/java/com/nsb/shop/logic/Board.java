@@ -11,11 +11,24 @@ public class Board {
 	private String choose;
 	private String object;
 	private String content;
-	private String picture;
 	private String users;
 	private Date updatetime ;
 	private Date createtime ;
+	private String ThumImg;
+	private String Img;
 	
+	public String getImg() {
+		return Img;
+	}
+	public void setImg(String img) {
+		Img = img;
+	}
+	public String getThumImg() {
+		return ThumImg;
+	}
+	public void setThumImg(String thumImg) {
+		ThumImg = thumImg;
+	}
 	public int getId() {
 		return id;
 	}
@@ -64,12 +77,7 @@ public class Board {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	public String getPicture() {
-		return picture;
-	}
-	public void setPicture(String picture) {
-		this.picture = picture;
-	}
+	
 	public String getUsers() {
 		return users;
 	}

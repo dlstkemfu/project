@@ -104,5 +104,17 @@ public class JqueryController {
 		return result;
 	}
 	
+	@RequestMapping(value="jquery/boardUpdate",method = RequestMethod.POST)
+	@ResponseBody
+	public int boardUpdate(Board board) {
+		int result = 0; 
+		
+		
+		
+		result = boardService.boardUpdate(board ); 
+		
+		return result;
+	}
+	
 	
 }

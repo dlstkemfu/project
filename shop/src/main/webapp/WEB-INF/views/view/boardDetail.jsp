@@ -61,7 +61,7 @@ function boardDelete(id) {
          	
             <tr>
                 <td colspan="2">
-                    <input type="button" value="삭제" onclick="javascript:location.href='boardDelete?id=${result.id}'"/>
+                    <input type="button" value="수정" onclick="javascript:location.href='boardUpdateView?id=${result.id}'"/>
                     
                     <input type="button" value="삭제" onclick="boardDelete(${result.id})">
                     <input type="button" value="목록보기" onclick="javascript:location.href='dashboard'"/>

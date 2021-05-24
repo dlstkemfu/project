@@ -25,4 +25,8 @@ UPDATE board SET views = views+1 WHERE id = #{id}
 DELETE FROM board WHERE id = #{id}
 </delete>
 
+<!-- update-->
+<update id="boardUpdate" >
+UPDATE board SET title = #{title}, content = #{content}	WHERE	id = #{id} 
+</update>
 </mapper>
