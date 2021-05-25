@@ -13,7 +13,7 @@
 
 		var title = $("#title").val();
 		var content = $("#content").val();
-
+		var Img =$("#Img").val();
 		if (!title) {
 			alert("제목 입력은 필수입니다.");
 			$("#title").focus();
@@ -23,24 +23,30 @@
 			$("#content").focus();
 			return false;
 		} else {
-			boardWrite(title, content);
+
+			boardWrite(title, content,Img);
+				
 		}
 
 	}
 
-	function boardWrite(title, content) {
+	function boardWrite(title, content,Img) {
 
 		$.ajax({
 
 			url : "/jquery/boardwrite",
 			type : 'POST',
+			
+			
 			data : {
 				title : title,
-				content : content
-
+				content : content,
+				Img : Img
 			},
+
 			success : function(data) {
 				if (data == 1) {
+
 					alert("글 등록이 완료되었습니다.");
 					location.href = "/view/dashboard";
 				} else {
@@ -58,6 +64,8 @@
 </head>
 <body>
 	<form>
+
+
 		<table>
 			<caption>게시판 글쓰기</caption>
 			<tbody>
@@ -72,15 +80,13 @@
 					<td><textarea cols="30" rows="10" placeholder="내용을 입력하세요. "
 							id="content"></textarea></td>
 				</tr>
-
-
-				<tr>
+				<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+				<div class="inputArea">
 					<label for="Img">이미지</label> <input type="file" id="Img"
 						name="file" />
 					<div class="select_img">
 						<img src="" />
 					</div>
-
 					<script>
 						$("#Img").change(
 								function() {
@@ -95,10 +101,13 @@
 									}
 								});
 					</script>
-					
-					<%=request.getRealPath("/") %>
-				</tr>
-				<tr>
+
+				</div>
+				<%=request.getRealPath("/")%>
+				</form>
+
+
+				<tr>	
 					<td colspan="2"><input type="button" value="등록"
 						onclick="boardValidation()" /> <input type="button" value="뒤로"
 						onclick="javascript:location.href='dashboard'" /></td>
@@ -106,5 +115,6 @@
 			</tbody>
 		</table>
 	</form>
+
 </body>
 </html>

@@ -50,6 +50,10 @@ function boardDelete(id) {
             </tr>
             
             <tr>
+                <th>이미지: </th>
+                <td>${result.img}</td>
+            </tr>
+            <tr>
                 <th>조회수: </th>
                 <td>${result.views}</td>
             </tr>

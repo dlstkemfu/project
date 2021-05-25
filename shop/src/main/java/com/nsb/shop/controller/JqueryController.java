@@ -1,5 +1,9 @@
 package com.nsb.shop.controller;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +12,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.nsb.shop.logic.Board;
 import com.nsb.shop.logic.Members;
 import com.nsb.shop.service.BoardService;
 import com.nsb.shop.service.UserService;
+import com.nsb.shop.utils.UploadFileUtils;
 
 @Controller
 @RequestMapping("jquery/*")
@@ -24,6 +30,8 @@ public class JqueryController {
 	@Autowired
 	UserService userService;
 	
+	@Resource(name="uploadPath")
+	private String uploadPath;
 	
 	
 	@RequestMapping("jquery/logout")
@@ -67,15 +75,29 @@ public class JqueryController {
 	}
 	@RequestMapping(value="jquery/boardwrite",method = RequestMethod.POST)
 	@ResponseBody
-	public int boardwrite(@ModelAttribute Board board, HttpSession session) {
+	public int boardwrite(@ModelAttribute Board board, HttpSession session,MultipartFile file) throws IOException, Exception {
+		
+		
 		int result = 0; 
 		String users = (String)session.getAttribute("userId");
-				
+		board.setUsers(users);
 		
-	
-		board.setUsers(users);	
-		result = boardService.boardwrite(board); 
+		String imgUploadPath = uploadPath + File.separator + "imgUpload";
+		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
+		String fileName = null;
+		System.out.print(board.getTitle());
+System.out.print(file);
+		if(file != null) {
+		 fileName =  UploadFileUtils.fileUpload(imgUploadPath, file.getOriginalFilename(), file.getBytes(), ymdPath); 
+		} else {
+		 fileName = uploadPath + File.separator + "images" + File.separator + "none.png";
+		}
+
+		board.setImg(File.separator + "imgUpload" + ymdPath + File.separator + fileName);
+		board.setThumImg(File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 		
+			
+		result = boardService.boardwrite(board);
 		return result;
 	}
 	

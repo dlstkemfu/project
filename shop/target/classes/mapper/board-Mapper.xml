@@ -7,8 +7,8 @@ SELECT * FROM board order BY id DESC;
 </select>
 
 <insert id="boardwrite">
-insert into board (id,category,title,content,region,choose,object,price,users,views,createtime,updatetime) 
-values(#{id},null,#{title},#{content},null,null,null,null,#{users},#{views},now(),null);
+insert into board (id,category,title,content,region,choose,object,price,users,views,createtime,updatetime,ThumImg,Img) 
+values(#{id},null,#{title},#{content},null,null,null,null,#{users},#{views},now(),null,#{ThumImg},#{Img});
 </insert>
 
 <select id="getBoardDetail" resultType="board">
