@@ -35,7 +35,7 @@
 <td><a href="/view/boardDetail?id=${b.id }">${b.title }</a></td>
 <td>${b.views }</td>
 <td>${b.content }</td>
-<td>${b.img }</td>
+<td><img src="${b.img}" ></td>
 <td>${dateFormat_cr }</td>
 </tr>
 </c:forEach>

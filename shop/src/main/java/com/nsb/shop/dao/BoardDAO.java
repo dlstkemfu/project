@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.nsb.shop.logic.Board;
+import com.nsb.shop.logic.BoardComments;
 
 @Repository
 public class BoardDAO {
@@ -53,5 +54,10 @@ public int boardUpdate(Board board) {
 		return sqlSession.update("boardUpdate", board );
 	
 	}
+
+public int comments(BoardComments comt) {
 	
+	return sqlSession.insert("comments", comt);
+}
+
 }

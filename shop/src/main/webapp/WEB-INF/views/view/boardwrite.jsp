@@ -10,10 +10,9 @@
 <title>글 작성</title>
 <script type="text/javascript">
 	function boardValidation() {
-
 		var title = $("#title").val();
 		var content = $("#content").val();
-		var Img =$("#Img").val();
+		
 		if (!title) {
 			alert("제목 입력은 필수입니다.");
 			$("#title").focus();
@@ -23,47 +22,17 @@
 			$("#content").focus();
 			return false;
 		} else {
-
-			boardWrite(title, content,Img);
-				
+			
+			form.submit();
+			
 		}
-
 	}
-
-	function boardWrite(title, content,Img) {
-
-		$.ajax({
-
-			url : "/jquery/boardwrite",
-			type : 'POST',
-			
-			
-			data : {
-				title : title,
-				content : content,
-				Img : Img
-			},
-
-			success : function(data) {
-				if (data == 1) {
-
-					alert("글 등록이 완료되었습니다.");
-					location.href = "/view/dashboard";
-				} else {
-					alert("글 등록 실패");
-				}
-			},
-			error : function() {
-				console.log("error");
-			}
-
-		})
-
-	}
+	
+	
 </script>
 </head>
 <body>
-	<form>
+	<form name="form" method="post" action= "/jquery/boardwrite" autocomplete="off" enctype="multipart/form-data">
 
 
 		<table>
@@ -73,14 +42,14 @@
 
 				<tr>
 					<th>제목:</th>
-					<td><input type="text" placeholder="제목을 입력하세요. " id="title" /></td>
+					<td><input type="text" placeholder="제목을 입력하세요. " id="title" name="title" /></td>
 				</tr>
 				<tr>
 					<th>내용:</th>
 					<td><textarea cols="30" rows="10" placeholder="내용을 입력하세요. "
-							id="content"></textarea></td>
+							id="content" name="content"></textarea></td>
 				</tr>
-				<form role="form" method="post" autocomplete="off" enctype="multipart/form-data">
+				
 				<div class="inputArea">
 					<label for="Img">이미지</label> <input type="file" id="Img"
 						name="file" />
@@ -104,12 +73,12 @@
 
 				</div>
 				<%=request.getRealPath("/")%>
-				</form>
+				
 
 
 				<tr>	
-					<td colspan="2"><input type="button" value="등록"
-						onclick="boardValidation()" /> <input type="button" value="뒤로"
+					<td colspan="2"><input type="button" value="등록" onclick="boardValidation()"
+						 /> <input type="button" value="뒤로"
 						onclick="javascript:location.href='dashboard'" /></td>
 				</tr>
 			</tbody>
