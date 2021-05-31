@@ -31,10 +31,6 @@ UPDATE board SET title = #{title}, content = #{content}	WHERE	id = #{id}
 </update>
 
 
-<!-- 상품 댓글 작성 -->
-<insert id="comments">
- insert into board_comments (boardid, users, comtNum, comtCon)
-     values (#{boardid}, #{users}, #{comtNum}, #{comtCon})
-</insert>
+
 
 </mapper>

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.nsb.shop.dao.BoardDAO;
 import com.nsb.shop.logic.Board;
-import com.nsb.shop.logic.BoardComments;
+
 
 @Service
 public class BoardServiceImpl implements BoardService {
@@ -40,8 +40,5 @@ public class BoardServiceImpl implements BoardService {
 	public int boardUpdate(Board board ) {
 	return boardDAO.boardUpdate(board);}
 	
-	@Override
-	public int comments(BoardComments comt) {
-		return boardDAO.comments(comt);
-	}
+	
 }

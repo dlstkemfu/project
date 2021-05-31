@@ -4,10 +4,13 @@
     <typeAliases>
         <typeAlias alias="board" type="com.nsb.shop.logic.Board"/>
         <typeAlias alias="members" type="com.nsb.shop.logic.Members"/>
+        <typeAlias alias="comments" type="com.nsb.shop.logic.Comments"/>
+        
     </typeAliases>
 
     <mappers>
         <mapper resource="mapper/board-Mapper.xml"/>
         <mapper resource="mapper/user-Mapper.xml"/>
+        <mapper resource="mapper/comments-Mapper.xml"/>
     </mappers>
 </configuration>

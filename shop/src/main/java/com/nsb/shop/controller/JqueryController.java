@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nsb.shop.logic.Board;
-import com.nsb.shop.logic.BoardComments;
+
 import com.nsb.shop.logic.Members;
 import com.nsb.shop.service.BoardService;
 import com.nsb.shop.service.UserService;
@@ -141,22 +141,7 @@ public class JqueryController {
 		return result;
 	}
 	
-	// 상품 조회 - 소감(댓글) 작성
-		@RequestMapping(value = "/boardDetail", method = RequestMethod.POST)
-		public String comments(BoardComments comt, HttpSession session) throws Exception {
-		 	System.out.print(comt.getBoardid());
-			String userId = (String)session.getAttribute("userId");
-			comt.setUsers(userId);
-			
-			boardService.comments(comt);
-			
-		 return "redirect:/view/boardDetail";
-		 
-		 
-		 
-		
-		 
-		}
+	
 	
 	
 }

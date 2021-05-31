@@ -19,18 +19,8 @@ th, td {
 	border: 1px solid #444444;
 }
 </style>
-<script>
-function comments(){
-	var comtCon = $("#comtCon").val();
-	if(!comtCon){
-		alert("댓글 입력은 필수입니다.");
-		$("#comtCon").focus();
-		return false;
-	}
-	else{
-	form.submit();
-	}
-}
+<script type="text/javascript">
+
 
 function boardDelete(id) {
 	
@@ -50,7 +40,7 @@ function boardDelete(id) {
 <body>
 	<form>
 		<table>
-
+<div>
 			<caption>게시판 글 내용</caption>
 			<tbody>
 				<tr>
@@ -78,35 +68,60 @@ function boardDelete(id) {
 				</tr>
 				
 				
-				<div id="comments">
+				<!-- 댓글 -->
+				<hr />
 
-					<c:if test="${sessionScope.userId == null }">
-						<p>
-							댓글을 남기시려면 <a href="/user/login">로그인</a>해주세요
-						</p>
-					</c:if>
+<ul>
+	<li>
+		<div>
+			<p>첫번째 댓글 작성자</p>
+			<p>첫번째 댓글</p>
+		</div>
+	</li>
+	<li>
+		<div>
+			<p>두번째 댓글 작성자</p>
+			<p>두번째 댓글</p>
+		</div>
+	</li>
+	<li>
+		<div>
+			<p>세번째 댓글 작성자</p>
+			<p>세번째 댓글</p>
+		</div>
+	</li>
+	
+	<c:forEach items="${comments}" var="comments">
+<li>
+	<div>
+		<p>${comments.writer} / ${comments.regDate}</p>
+		<p>${comments.comtCon }</p>
+	</div>
+</li>	
+</c:forEach>
+</ul>
+<form name="form" method="post" action= "/Comments/commentswrite">
+<div>
+	<p>
+		<label>댓글 작성</label> 
+	</p>
+	<input type="hidden" name="id" value="${result.id}">
+	<p>
+		<textarea rows="5" cols="50"></textarea>
+	</p>
+	<p>
+		<button type="submit">댓글 작성</button>
+	</p>
+</div>
+				
+				
+				<!-- 댓글 끝-->
+	</form>			
+				
+				
 
-					<c:if test="${sessionScope.userId != null}">
-						<section class="commentsForm">
-							<form name="form"  method="post" autocomplete="off">
-							
-							<input type="hidden" name="boardid" value="${result.id}" id="boardid">
-								<input type="text" placeholder="댓글을 입력하세요. " id="comtCon" name="comtCon" />
-		
-								<div class="input_area">
-									<button type="submit" id="comments_btn" >댓글남기기</button>
-								</div>
-
-							</form>
-						</section>
-					</c:if>
-
-					<section class="replyList">
-						<ol>
-							<li>댓글 목록</li>
-						</ol>
-					</section>
-				</div>
+					
+				
 
 				
 
