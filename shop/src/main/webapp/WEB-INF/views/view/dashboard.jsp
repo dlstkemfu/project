@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>알뜰시장</title>
 <style>
@@ -17,6 +18,8 @@
 </style>
 </head>
 <body>
+
+				
 <p>환영합니다 ${sessionScope.loginUser.userId }님 <a href="/jquery/logout">로그아웃</a></p>
 <p>알뜰시장</p>
 <div>게시글 리스트</div>
@@ -41,5 +44,7 @@
 </c:forEach>
 </table>
 <div> <a href="/view/boardwrite">글 작성하기</a></div>
+
+
 </body>
 </html>

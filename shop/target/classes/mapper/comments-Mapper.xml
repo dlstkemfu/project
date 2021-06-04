@@ -6,14 +6,14 @@
 <select id="commentsList"  resultType="comments">
 	select
 		cno, id, writer, comtCon, regDate
-	from board_comments
+	from comments
 		where id = #{id}		
 </select>
 
 <!-- 댓글 작성 -->
 <insert id="commentsWrite" >
-	insert into board_comments(id, writer, comtCon, regDate)
-		value(#{id}, #{writer}, #{comtCon}, #{regDate})
+	insert into comments(cno,id, writer, comtCon, regDate)
+		values(#{cno}, #{id}, #{writer}, #{comtCon}, now())
 </insert>
 	
 

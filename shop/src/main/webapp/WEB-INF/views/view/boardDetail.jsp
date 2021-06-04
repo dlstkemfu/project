@@ -21,6 +21,19 @@ th, td {
 </style>
 <script type="text/javascript">
 
+function comments(){
+	var comtCon = $("#comtCon").val();
+	if(!comtCon){
+		alert("댓글 입력은 필수입니다.");
+		$("#comtCon").focus();
+		return false;
+	}
+	else{
+	form.submit();
+	}
+}
+
+
 
 function boardDelete(id) {
 	
@@ -36,9 +49,10 @@ function boardDelete(id) {
 	}
 }
 </script>
+
 </head>
 <body>
-	<form>
+	
 		<table>
 <div>
 			<caption>게시판 글 내용</caption>
@@ -70,53 +84,38 @@ function boardDelete(id) {
 				
 				<!-- 댓글 -->
 				<hr />
-
+댓글
 <ul>
-	<li>
-		<div>
-			<p>첫번째 댓글 작성자</p>
-			<p>첫번째 댓글</p>
-		</div>
-	</li>
-	<li>
-		<div>
-			<p>두번째 댓글 작성자</p>
-			<p>두번째 댓글</p>
-		</div>
-	</li>
-	<li>
-		<div>
-			<p>세번째 댓글 작성자</p>
-			<p>세번째 댓글</p>
-		</div>
-	</li>
+	
 	
 	<c:forEach items="${comments}" var="comments">
 <li>
 	<div>
-		<p>${comments.writer} / ${comments.regDate}</p>
-		<p>${comments.comtCon }</p>
+		<p>작성자 :${comments.writer} </p>
+		<p>내용 :${comments.comtCon }</p>
 	</div>
 </li>	
 </c:forEach>
 </ul>
-<form name="form" method="post" action= "/Comments/commentswrite">
+<form name="form" method="post" action= "/jquery/commentswrite" autocomplete="off">
 <div>
 	<p>
 		<label>댓글 작성</label> 
 	</p>
-	<input type="hidden" name="id" value="${result.id}">
+	<input type="hidden" name="id" id="id" value="${result.id}">
 	<p>
-		<textarea rows="5" cols="50"></textarea>
+		<input type="text"  id="comtCon" name="comtCon" />
 	</p>
 	<p>
-		<button type="submit">댓글 작성</button>
+	
 	</p>
 </div>
 				
 				
 				<!-- 댓글 끝-->
-	</form>			
+	</form>	
+	<input type="button" value="댓글작성" onclick="comments()"/>
+	
 				
 				
 
@@ -139,6 +138,6 @@ function boardDelete(id) {
 				</tr>
 			</tbody>
 		</table>
-	</form>
+	
 </body>
 </html>

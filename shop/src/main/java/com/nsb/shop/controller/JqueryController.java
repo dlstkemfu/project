@@ -16,9 +16,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nsb.shop.logic.Board;
-
+import com.nsb.shop.logic.Comments;
 import com.nsb.shop.logic.Members;
 import com.nsb.shop.service.BoardService;
+import com.nsb.shop.service.CommentsService;
 import com.nsb.shop.service.UserService;
 import com.nsb.shop.utils.UploadFileUtils;
 
@@ -31,6 +32,9 @@ public class JqueryController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	private CommentsService service;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -83,7 +87,7 @@ public class JqueryController {
 		int result = 0; 
 		String users = (String)session.getAttribute("userId");
 		board.setUsers(users);
-		
+		System.out.print("안녕");
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
@@ -139,6 +143,21 @@ public class JqueryController {
 		result = boardService.boardUpdate(board ); 
 		
 		return result;
+	}
+	
+	@RequestMapping(value="jquery/commentswrite",method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView commentsWrite(@ModelAttribute Comments comt,HttpSession session) {
+		
+		
+		String users = (String)session.getAttribute("userId");
+		comt.setWriter(users);	
+		System.out.print(users);
+		service.commentsWrite(comt);
+		
+		ModelAndView mav = new ModelAndView("redirect:/view/boardDetail?id="+ comt.getid());
+		return mav;
+		
 	}
 	
 	
