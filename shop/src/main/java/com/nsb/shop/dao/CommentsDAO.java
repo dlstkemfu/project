@@ -28,5 +28,16 @@ public class CommentsDAO {
 			return sqlSession.selectList("commentsList", id);
 		}
 
+	// 댓글 삭제
+		
+		public int commentsDelete (int cno) {
+			return sqlSession.delete("commentsDelete" , cno );
+		}
+	// 댓글 수정
+		
+		public int commentsUpdate(int cno ) {
+			return sqlSession.update("commentsUpdate",cno);
+		}
 	
 }
+

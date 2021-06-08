@@ -33,6 +33,32 @@ function comments(){
 	}
 }
 
+function commentsDelete(cno) {
+	<c:forEach items="${comments}" var="comments">
+	var chk = confirm("정말 삭제하시겠습니까?");
+	
+	if(chk){
+		
+		if(${sessionScope.userId == comments.writer}){
+			
+		            	location.href='commentsDelete?cno='+cno;
+		                
+		          
+		
+			
+			
+			
+			
+	}else{
+		alert("작성자만 삭제할수있습니다");
+	}
+		
+	}
+	</c:forEach>	
+}
+
+
+
 
 
 function boardDelete(id) {
@@ -52,9 +78,9 @@ function boardDelete(id) {
 
 </head>
 <body>
-	
-		<table>
-<div>
+
+	<table>
+		<div>
 			<caption>게시판 글 내용</caption>
 			<tbody>
 				<tr>
@@ -80,49 +106,51 @@ function boardDelete(id) {
 					<th>작성자:</th>
 					<td>${result.users}</td>
 				</tr>
-				
-				
+
+
 				<!-- 댓글 -->
 				<hr />
-댓글
-<ul>
-	
-	
-	<c:forEach items="${comments}" var="comments">
-<li>
-	<div>
-		<p>작성자 :${comments.writer} </p>
-		<p>내용 :${comments.comtCon }</p>
-	</div>
-</li>	
-</c:forEach>
-</ul>
-<form name="form" method="post" action= "/jquery/commentswrite" autocomplete="off">
-<div>
-	<p>
-		<label>댓글 작성</label> 
-	</p>
-	<input type="hidden" name="id" id="id" value="${result.id}">
-	<p>
-		<input type="text"  id="comtCon" name="comtCon" />
-	</p>
-	<p>
-	
-	</p>
-</div>
-				
-				
-				<!-- 댓글 끝-->
-	</form>	
-	<input type="button" value="댓글작성" onclick="comments()"/>
-	
-				
-				
+				댓글
+				<ul>
 
-					
-				
 
-				
+					<c:forEach items="${comments}" var="comments">
+
+						<li>
+							<div>
+								<p>작성자 :${comments.writer}</p>
+								<p>
+									내용 :${comments.comtCon }<input type="button" value="댓글삭제"
+										onclick="commentsDelete(${comments.cno})"  />
+								</p>
+							</div>
+						</li>
+					</c:forEach>
+				</ul>
+				<form name="form" method="post" action="/jquery/commentswrite"	autocomplete="off">
+					<div>
+						<p>
+							<label>댓글 작성</label>
+						</p>
+						<input type="hidden" name="id" id="id" value="${result.id}">
+						<p>
+							<input type="text" id="comtCon" name="comtCon" />
+						</p>
+						<p></p>
+					</div>
+
+
+					<!-- 댓글 끝-->
+				</form>
+				<input type="button" value="댓글작성" onclick="comments()" />
+
+
+
+
+
+
+
+
 
 
 
@@ -137,7 +165,7 @@ function boardDelete(id) {
 						value="목록보기" onclick="javascript:location.href='dashboard'" /></td>
 				</tr>
 			</tbody>
-		</table>
-	
+	</table>
+
 </body>
 </html>

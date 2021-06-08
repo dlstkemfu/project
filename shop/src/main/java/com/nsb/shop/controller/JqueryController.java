@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,7 +35,7 @@ public class JqueryController {
 	UserService userService;
 	
 	@Autowired
-	private CommentsService service;
+	private CommentsService commentsservice;
 	
 	@Resource(name="uploadPath")
 	private String uploadPath;
@@ -145,6 +146,8 @@ public class JqueryController {
 		return result;
 	}
 	
+	//댓글 작성
+	
 	@RequestMapping(value="jquery/commentswrite",method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView commentsWrite(@ModelAttribute Comments comt,HttpSession session) {
@@ -152,13 +155,15 @@ public class JqueryController {
 		
 		String users = (String)session.getAttribute("userId");
 		comt.setWriter(users);	
-		System.out.print(users);
-		service.commentsWrite(comt);
+		
+		commentsservice.commentsWrite(comt);
 		
 		ModelAndView mav = new ModelAndView("redirect:/view/boardDetail?id="+ comt.getid());
 		return mav;
 		
 	}
+	
+	
 	
 	
 	

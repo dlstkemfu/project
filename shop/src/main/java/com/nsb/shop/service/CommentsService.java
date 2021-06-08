@@ -15,5 +15,10 @@ public interface CommentsService {
 	//댓글 조회
 	public List<Comments> commentsList(int id);
 	
+	//댓글 삭제
+	public int commentsDelete(int cno);
+	
+	//댓글 수정
+	public int commentsUpdate(int cno );
 	
 }

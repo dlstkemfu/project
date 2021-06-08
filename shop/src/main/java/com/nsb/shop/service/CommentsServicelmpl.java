@@ -26,5 +26,17 @@ public class CommentsServicelmpl implements CommentsService {
 		return commentsDAO.commentsList(id);
 	}
 	
+	//댓글 삭제
+	@Override
+	public int commentsDelete(int cno) {
+		return commentsDAO.commentsDelete(cno);
+	}
+	
+	//댓글 수정
+	@Override
+	public int commentsUpdate(int cno ) {
+		return commentsDAO.commentsUpdate(cno);
+	}
+	
 
 }

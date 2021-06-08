@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.nsb.shop.logic.Board;
@@ -27,7 +28,8 @@ public class ViewController {
 	
 	@Autowired
 	private CommentsService commentsservice;
-
+	
+	
 
 	@RequestMapping("view/dashboard")
 	public ModelAndView dashboard() {
@@ -56,6 +58,7 @@ public class ViewController {
 		mav.addObject("result", result);
 		
 		// 댓글 조회
+		
 				List<Comments> comments = null;
 				comments = commentsservice.commentsList(id);
 				
@@ -63,7 +66,9 @@ public class ViewController {
 
 		return mav;
 	}
-
+	
+	//게시물 삭제
+	
 	@RequestMapping(value = "view/boardDelete", method = RequestMethod.GET)
 	public ModelAndView boardDelete(@RequestParam("id") int id) {
 
@@ -81,6 +86,19 @@ public class ViewController {
 		return mav;
 
 	}
+	
+	//댓글 삭제
+	
+		@RequestMapping(value="view/commentsDelete",method = RequestMethod.GET)
+		@ResponseBody
+		public ModelAndView commentsDelete (@RequestParam("cno") int cno ) {
+			
+			
+			commentsservice.commentsDelete(cno);
+			ModelAndView mav = new ModelAndView("redirect:/view/dashboard");
+			return mav;
+			
+		}
 	
 	
 	
