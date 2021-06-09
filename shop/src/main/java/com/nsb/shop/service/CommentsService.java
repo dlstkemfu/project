@@ -19,6 +19,9 @@ public interface CommentsService {
 	public int commentsDelete(int cno);
 	
 	//댓글 수정
-	public int commentsUpdate(int cno );
+	public int commentsUpdate(Comments comt);
 	
+	//댓글 선택
+	
+	Comments getCommentsDetail(int cno);
 }

@@ -26,5 +26,9 @@ DELETE FROM comments WHERE cno = #{cno}
 UPDATE comments SET comtCon = #{comtCon} WHERE cno = #{cno}
 </update>
 
+<!-- 댓글 선택 -->
+<select id="getCommentsDetail" resultType="Comments">
+SELECT * FROM comments where cno = #{cno};
+</select>
 
 </mapper>

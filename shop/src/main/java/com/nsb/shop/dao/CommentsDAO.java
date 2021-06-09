@@ -1,11 +1,13 @@
 package com.nsb.shop.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.nsb.shop.logic.Board;
 import com.nsb.shop.logic.Comments;
 
 @Repository
@@ -35,9 +37,15 @@ public class CommentsDAO {
 		}
 	// 댓글 수정
 		
-		public int commentsUpdate(int cno ) {
-			return sqlSession.update("commentsUpdate",cno);
+		public int commentsUpdate(Comments comt ) {
+			return sqlSession.update("commentsUpdate",comt);
 		}
+		
+		public Comments getCommentsDetail(int cno) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("cno", cno);
+			return sqlSession.selectOne("getCommentsDetail", map);
+		}	
 	
 }
 

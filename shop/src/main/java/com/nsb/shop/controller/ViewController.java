@@ -99,6 +99,27 @@ public class ViewController {
 			return mav;
 			
 		}
+		
+	//댓글 수정 
+		
+		@RequestMapping(value="view/commentsUpdateView",method = RequestMethod.GET)
+		@ResponseBody
+		public ModelAndView commentsUpdate (int id , int cno) {
+			
+			boardService.viewsUpdate(id);
+			Board result = boardService.getBoardDetail(id);
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("result", result);
+			
+			// 댓글 조회
+			
+					
+				Comments	comments = commentsservice.getCommentsDetail(cno);
+					
+					mav.addObject("comments", comments);
+
+			return mav;
+		}
 	
 	
 	

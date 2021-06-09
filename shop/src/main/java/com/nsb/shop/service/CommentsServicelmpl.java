@@ -34,9 +34,16 @@ public class CommentsServicelmpl implements CommentsService {
 	
 	//댓글 수정
 	@Override
-	public int commentsUpdate(int cno ) {
-		return commentsDAO.commentsUpdate(cno);
+	public int commentsUpdate(Comments comt) {
+		return commentsDAO.commentsUpdate(comt);
 	}
+	
+	//댓글 선택
+	@Override
+	public Comments getCommentsDetail(int cno) {
+		return commentsDAO.getCommentsDetail(cno);
+	}
+	
 	
 
 }

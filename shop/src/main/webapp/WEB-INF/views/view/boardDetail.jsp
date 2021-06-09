@@ -14,13 +14,11 @@ table {
 	width: 100%;
 	border: 1px solid #444444;
 }
-
 th, td {
 	border: 1px solid #444444;
 }
 </style>
 <script type="text/javascript">
-
 function comments(){
 	var comtCon = $("#comtCon").val();
 	if(!comtCon){
@@ -32,7 +30,6 @@ function comments(){
 	form.submit();
 	}
 }
-
 function commentsDelete(cno) {
 	<c:forEach items="${comments}" var="comments">
 	var chk = confirm("정말 삭제하시겠습니까?");
@@ -41,7 +38,7 @@ function commentsDelete(cno) {
 		
 		if(${sessionScope.userId == comments.writer}){
 			
-		            	location.href='commentsDelete?cno='+cno;
+			location.href='commentsDelete?cno='+cno;
 		                
 		          
 		
@@ -56,11 +53,6 @@ function commentsDelete(cno) {
 	}
 	</c:forEach>	
 }
-
-
-
-
-
 function boardDelete(id) {
 	
 	var chk = confirm("정말 삭제하시겠습니까?");
@@ -121,7 +113,8 @@ function boardDelete(id) {
 								<p>작성자 :${comments.writer}</p>
 								<p>
 									내용 :${comments.comtCon }<input type="button" value="댓글삭제"
-										onclick="commentsDelete(${comments.cno})"  />
+										onclick="commentsDelete(${comments.cno})"  /><input type="button" value="댓글수정"
+										onclick="javascript:location.href='commentsUpdateView?id=${comments.id}&&cno=${comments.cno }'"  />
 								</p>
 							</div>
 						</li>

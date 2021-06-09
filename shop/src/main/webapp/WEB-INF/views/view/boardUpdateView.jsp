@@ -100,6 +100,8 @@ function boardUpdate(title,content,id){
 						onclick="boardUpdateCheck()" /> <input type="button" value="뒤로"
 						onclick="javascript:location.href='boardDetail?id=${result.id}'" /></td>
 				</tr>
+				
+				
 			</tbody>
 		</table>
 	</form>

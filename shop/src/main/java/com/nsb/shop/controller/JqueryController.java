@@ -163,6 +163,17 @@ public class JqueryController {
 		
 	}
 	
+	//댓글 수정
+	
+	@RequestMapping(value="jquery/commentsUpdate",method = RequestMethod.POST)
+	@ResponseBody
+	public int commentsUpdate(Comments comt) {
+		int result = 0;
+		
+		result = commentsservice.commentsUpdate(comt);
+		return result;
+	}
+	
 	
 	
 	
