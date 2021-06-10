@@ -40,5 +40,14 @@ public class BoardServiceImpl implements BoardService {
 	public int boardUpdate(Board board ) {
 	return boardDAO.boardUpdate(board);}
 	
+	@Override
+	public int boardcount() {
+		return boardDAO.boardcount();
+	}
+	
+	@Override
+	public List<Board> boardpage(int displayPost, int postNum){
+		return boardDAO.boardpage(displayPost, postNum);
+	}
 	
 }

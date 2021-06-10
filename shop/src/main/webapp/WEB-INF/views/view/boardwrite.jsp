@@ -32,7 +32,7 @@
 </script>
 </head>
 <body>
-	<form name="form" method="post" action= "/comments/commentswrite" autocomplete="off" enctype="multipart/form-data">
+	<form name="form" method="post" action= "/jquery/boardwrite" autocomplete="off" enctype="multipart/form-data">
 
 
 		<table>

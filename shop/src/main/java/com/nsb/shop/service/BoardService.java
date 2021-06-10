@@ -14,5 +14,6 @@ public interface BoardService {
 	void viewsUpdate(int id);
 	int boardDelete(int id);
 	int boardUpdate(Board board );
-	
+	int boardcount();
+	List boardpage(int displayPost, int postNum);
 }

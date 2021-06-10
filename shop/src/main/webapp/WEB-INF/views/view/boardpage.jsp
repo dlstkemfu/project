@@ -43,9 +43,14 @@
 </tr>
 </c:forEach>
 </table>
-<li>
- <a href="/view/boardpage?num=1">글 목록(페이징)</a> 
-</li>
+
+
+ <c:forEach begin="1" end="${pageNum}" var="num">
+    <span>
+     <a href="/view/boardpage?num=${num}">${num}</a>
+  </span>
+ </c:forEach>
+
 <div> <a href="/view/boardwrite">글 작성하기</a></div>
 
 

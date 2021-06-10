@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.nsb.shop.logic.Board;
 
-
 @Repository
 public class BoardDAO {
 
@@ -21,11 +20,9 @@ public class BoardDAO {
 	}
 
 	public int boardwrite(Board board) {
-		 
-		
-		
+
 		return sqlSession.insert("boardwrite", board);
-	
+
 	}
 
 	public Board getBoardDetail(int id) {
@@ -39,21 +36,29 @@ public class BoardDAO {
 		map.put("id", id);
 		sqlSession.update("viewUpdate", map);
 	}
-	
+
 	public int boardDelete(int id) {
-		
+
 		return sqlSession.delete("boardDelete", id);
 	}
-	
-	
-	
-public int boardUpdate(Board board) {
-		 
-		
-		
-		return sqlSession.update("boardUpdate", board );
-	
-	}
 
+	public int boardUpdate(Board board) {
+
+		return sqlSession.update("boardUpdate", board);
+
+	}
+	
+	public int boardcount() {
+		return sqlSession.selectOne("boardcount");
+	}
+	
+	public List<Board> boardpage(int displayPost, int postNum){
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		
+		map.put("displayPost", displayPost);
+		map.put("postNum", postNum);
+		
+		return sqlSession.selectList("boardpage",map);
+	}
 
 }

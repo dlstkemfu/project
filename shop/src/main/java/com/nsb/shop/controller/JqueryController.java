@@ -48,6 +48,8 @@ public class JqueryController {
 		return "/user/login";
 	}
 	
+	//로그인
+	
 	@RequestMapping(value="jquery/login",method = RequestMethod.POST)
 	@ResponseBody
 	public int login(Members members,HttpSession session) {
@@ -80,6 +82,9 @@ public class JqueryController {
 		
 		return result;
 	}
+	
+	//게시판 글쓰기
+	
 	@RequestMapping(value="jquery/boardwrite",method = RequestMethod.POST)
 	@ResponseBody
 	public ModelAndView boardwrite(@ModelAttribute Board board, HttpSession session,MultipartFile file) throws IOException, Exception {
@@ -88,7 +93,6 @@ public class JqueryController {
 		int result = 0; 
 		String users = (String)session.getAttribute("userId");
 		board.setUsers(users);
-		System.out.print("안녕");
 		String imgUploadPath = uploadPath + File.separator + "imgUpload";
 		String ymdPath = UploadFileUtils.calcPath(imgUploadPath);
 		String fileName = null;
@@ -108,6 +112,8 @@ public class JqueryController {
 		ModelAndView mav = new ModelAndView("redirect:/view/dashboard");
 		return mav;
 	}
+	
+	//회원가입
 	
 	@RequestMapping(value="jquery/signUp",method = RequestMethod.POST)
 	@ResponseBody
@@ -133,6 +139,8 @@ public class JqueryController {
 		
 		return result;
 	}
+	
+	//게시판 수정
 	
 	@RequestMapping(value="jquery/boardUpdate",method = RequestMethod.POST)
 	@ResponseBody
