@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>알뜰시장</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <style>
 body {

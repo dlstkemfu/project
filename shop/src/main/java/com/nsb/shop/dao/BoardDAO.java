@@ -60,5 +60,17 @@ public class BoardDAO {
 		
 		return sqlSession.selectList("boardpage",map);
 	}
+	
+	public List<Board> boardpageSearch(int displayPost, int postNum, String searchType, String keyword){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		  
+		  map.put("displayPost", displayPost);
+		  map.put("postNum", postNum);
+		  
+		  map.put("searchType", searchType);
+		  map.put("keyword", keyword);
+		  
+		  return sqlSession.selectList("boardpageSearch",map);
+	}
 
 }

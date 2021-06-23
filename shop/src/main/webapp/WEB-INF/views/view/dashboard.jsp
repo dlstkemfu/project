@@ -46,6 +46,19 @@
 <li>
  <a href="/view/boardpage?num=1">글 목록(페이징)</a> 
 </li>
+
+<div>
+  <select name="searchType">
+      <option value="title">제목</option>
+         <option value="content">내용</option>
+      <option value="title_content">제목+내용</option>
+      <option value="users">작성자</option>
+  </select>
+  
+  <input type="text" name="keyword" />
+  
+  <button type="button">검색</button>
+ </div>
 <div> <a href="/view/boardwrite">글 작성하기</a></div>
 
 

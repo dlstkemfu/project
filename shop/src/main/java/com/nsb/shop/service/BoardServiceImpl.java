@@ -50,4 +50,9 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.boardpage(displayPost, postNum);
 	}
 	
+	@Override
+	public List<Board> boardpageSearch(int displayPost, int postNum, String searchType, String keyword){
+		return boardDAO.boardpageSearch(displayPost, postNum, searchType, keyword);
+	}
+	
 }

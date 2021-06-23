@@ -45,6 +45,39 @@ limit #{displayPost},#{postNum}
 </select>
 
 
+<!--제목 검색-->
+<select id="boardpageSerch"  resultType="board">
+SELECT * FROM board
+
+<if test='searchType.equals("title")'>
+ WHERE title LIKE concat('%', #{keyword},'%')
+</if> 
+
+<if test='searchType.equals("content")'>
+ WHERE content LIKE concat('%', #{keyword},'%')
+</if>
+ 
+<if test='searchType.equals("title_content")'>
+ WHERE title LIKE concat('%', #{keyword},'%') or content LIKE concat('%', #{keyword} , '%')
+</if>
+ 
+<if test='searchType.equals("users")'>
+ WHERE users LIKE concat('%', #{keyword},'%')
+</if>
+ 
+order BY id DESC
+limit #{displayPost},#{postNum}
+</select>
+
+<!--내용 검색-->
+
+
+<!--제목+내용 검색-->
+
+
+<!--작성자 검색-->
+
+
 
 
 
