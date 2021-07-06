@@ -5,6 +5,7 @@
         <typeAlias alias="board" type="com.nsb.shop.logic.Board"/>
         <typeAlias alias="members" type="com.nsb.shop.logic.Members"/>
         <typeAlias alias="comments" type="com.nsb.shop.logic.Comments"/>
+        <typeAlias alias="page" type="com.nsb.shop.logic.Page"/>
         
     </typeAliases>
 

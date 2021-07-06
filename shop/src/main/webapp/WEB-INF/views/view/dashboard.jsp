@@ -7,6 +7,8 @@
 
 <meta charset="UTF-8">
 <title>알뜰시장</title>
+
+
 <style>
   table {
     width: 100%;

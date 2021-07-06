@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/jstlHeader.jsp"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,7 +39,7 @@ th, td {
 			</tr>
 		</thead>
 
-		<c:forEach var="b" items="${result }">
+		<c:forEach var="b" items="${list }">
 			<fmt:formatDate value="${b.createtime}" pattern="yyyy-MM-dd HH:MM:ss"
 				var="dateFormat_cr" />
 			<tr>
@@ -50,24 +52,51 @@ th, td {
 		</c:forEach>
 	</table>
 
-	
-	<c:if test="${prev}">
-		<span>[ <a href="/view/boardpage?num=${startPageNum - 1}">이전</a>
+
+	<c:if test="${page.prev}">
+		<span>[ <a href="/view/boardpage?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a>
 			]
 		</span>
 	</c:if>
 
-	<c:forEach begin="${startPageNum}" end="${endpageNum}" var="num">
-		<span> <a href="/view/boardpage?num=${num}">${num}</a>
+	<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
+		var="num">
+		<span> <a href="/view/boardpage?num=${num}${page.searchTypeKeyword}">${num}</a>
 		</span>
 	</c:forEach>
 
-	<c:if test="${next}">
-		<span>[ <a href="/view/boardpage?num=${endpageNum + 1}">다음</a>
+	<c:if test="${page.next}">
+		<span>[ <a href="/view/boardpage?num=${endPageNum + 1}${page.searchTypeKeyword}">다음</a>
 			]
 		</span>
 	</c:if>
 
+	<div>
+		<select name="searchType">
+			<option value="title"
+				<c:if test="${page.searchType eq 'title'}">selected</c:if>>제목</option>
+			<option value="content"
+				<c:if test="${page.searchType eq 'content'}">selected</c:if>>내용</option>
+			<option value="title_content"
+				<c:if test="${page.searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
+			<option value="users"
+				<c:if test="${page.searchType eq 'users'}">selected</c:if>>작성자</option>
+		</select> 
+		<input type="text" name="keyword" value="${page.keyword}" />
+
+		<button type="button" id="searchBtn">검색</button>
+	</div>
+
+	<script>
+		document.getElementById("searchBtn").onclick = function() {
+
+			let searchType = document.getElementsByName("searchType")[0].value;
+			let keyword = document.getElementsByName("keyword")[0].value;
+
+			location.href = "/view/boardpage?num=1" + "&searchType="
+					+ searchType + "&keyword=" + keyword;
+		};
+	</script>
 	<div>
 		<a href="/view/boardwrite">글 작성하기</a>
 	</div>

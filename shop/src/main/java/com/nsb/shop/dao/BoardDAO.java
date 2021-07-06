@@ -72,5 +72,18 @@ public class BoardDAO {
 		  
 		  return sqlSession.selectList("boardpageSearch",map);
 	}
+	
+	// 게시물 총 갯수 + 검색 적용
+		
+		public int searchCount(String searchType, String keyword){
+		 
+		 HashMap data = new HashMap();
+		 
+		 data.put("searchType", searchType);
+		 data.put("keyword", keyword);
+		 
+		 return sqlSession.selectOne("searchCount", data); 
+		}
+	
 
 }

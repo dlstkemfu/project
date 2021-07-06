@@ -2,8 +2,6 @@ package com.nsb.shop.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nsb.shop.logic.Board;
 import com.nsb.shop.logic.Comments;
-import com.nsb.shop.logic.Members;
+import com.nsb.shop.logic.Page;
 import com.nsb.shop.service.BoardService;
 import com.nsb.shop.service.CommentsService;
 
@@ -121,60 +119,32 @@ public class ViewController {
 	
 	//게시판 페이지
 	
-	@RequestMapping(value = "view/boardpage" , method = RequestMethod.GET)
-	public ModelAndView dashboardpage(@RequestParam("num") int num) {
-		
-		//게시물 총 갯수
-		int boardcount =boardService.boardcount();
-		
-		//한 페이지에 출력할 게시물 갯수
-		int postNum = 10;
-		
-		// 하단 페이지 번호 ([게시물총갯수 / 한 페이지에 출력할 갯수] 의 올림)
-		int pageNum = (int)Math.ceil((double)boardcount/postNum);
-		
-		// 출력할 게시물
-		int displayPost = (num - 1) * postNum;
-		
-		// 한번에 표시할 페이징 번호의 갯수
-		int pageNum_cnt = 10;
-		
-		// 표시되는 페이지 번호중 마지막 번호
-		int endpageNum = (int)(Math.ceil((double)num / (double)pageNum_cnt) * pageNum_cnt);
-		
-		//표시되는 페이지 번호중 첫번째 번호
-		int startPageNum = endpageNum - (pageNum_cnt - 1);
-		
-		// 마지막 번호 재계산
-		int endpageNum_tmp = (int)(Math.ceil((double)boardcount / (double)pageNum_cnt));
-		 
-		if(endpageNum > endpageNum_tmp) {
-			endpageNum = endpageNum_tmp;
-		}
-		
-		boolean prev = startPageNum == 1 ? false : true;
-		boolean next = endpageNum * pageNum_cnt >= boardcount ? false : true;
-		
-		
-		
-		
-		List result = boardService.boardpage(displayPost, postNum);
-		ModelAndView mav = new ModelAndView();
+		@RequestMapping(value = "view/boardpage" , method = RequestMethod.GET)
+		public ModelAndView dashboardpage(@RequestParam("num") int num,
+				@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
+				   @RequestParam(value = "keyword",required = false, defaultValue = "") String keyword) {
+			
+			Page page = new Page();
+			
+			page.setNum(num);
+			page.setCount(boardService.searchCount(searchType, keyword));
 
-		mav.addObject("result", result);
-		mav.addObject("pageNum" , pageNum);
-		
-		// 시작 및 끝 번호
-		mav.addObject("startPageNum", startPageNum);
-		mav.addObject("endpageNum", endpageNum);
-
-				// 이전 및 다음 
-		mav.addObject("prev", prev);
-		mav.addObject("next", next);
-
-		return mav;
-
-}
+			page.setSearchType(searchType);
+			page.setKeyword(keyword);
+			
+			List list = null;
+			list = boardService.boardpageSearch(page.getDisplayPost(), page.getPostNum(), searchType , keyword);
+			ModelAndView mav = new ModelAndView();
+			
+			mav.addObject("list" , list);
+			
+			mav.addObject("page", page);
+			mav.addObject("select", num);
+			
+			return mav;
+			
+			
+	}
 	
 	
 	

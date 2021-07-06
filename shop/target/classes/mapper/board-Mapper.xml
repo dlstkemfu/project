@@ -45,8 +45,8 @@ limit #{displayPost},#{postNum}
 </select>
 
 
-<!--제목 검색-->
-<select id="boardpageSerch"  resultType="board">
+<!--검색-->
+<select id="boardpageSearch"  resultType="board">
 SELECT * FROM board
 
 <if test='searchType.equals("title")'>
@@ -69,13 +69,30 @@ order BY id DESC
 limit #{displayPost},#{postNum}
 </select>
 
-<!--내용 검색-->
+<!-- 게시물 총 갯수 + 검색 적용 -->
+<select id="searchCount" parameterType="hashMap" resultType="int">
+ SELECT count(*) FROM board 
+  
+ <if test='searchType.equals("title")'>
+  WHERE title LIKE concat('%', #{keyword}, '%')
+ </if>
+ 
+ <if test='searchType.equals("content")'>
+  WHERE content LIKE concat('%', #{keyword}, '%')
+ </if>
+ 
+ <if test='searchType.equals("title_content")'>
+  WHERE title LIKE concat('%', #{keyword}, '%') 
+   or content LIKE concat('%', #{keyword}, '%')
+ </if>
+ 
+ <if test='searchType.equals("users")'>
+  WHERE writer LIKE concat('%', #{keyword}, '%')
+ </if>
+ 
+</select>
 
 
-<!--제목+내용 검색-->
-
-
-<!--작성자 검색-->
 
 
 

@@ -17,5 +17,5 @@ public interface BoardService {
 	int boardcount();
 	List boardpage(int displayPost, int postNum);
 	List boardpageSearch(int displayPost, int postNum, String searchType, String keyword);
-	
+	int searchCount(String searchType, String keyword);
 }
