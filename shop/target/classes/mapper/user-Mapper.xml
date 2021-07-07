@@ -13,8 +13,8 @@ where nickname = #{nickname};
 </select>
 
 <insert id="userJoin">
-insert into members (id,name,userId,password,nickname,phone,email,gender,birth,authority,declaration,createtime)
-values (#{id},#{name},#{userId},#{password},#{nickname},#{phone},#{email},#{gender},#{birth},1,null,now())
+insert into members (id,name,userId,password,nickname,phone,addr1,addr2,addr3,email,gender,birth,authority,declaration,createtime)
+values (#{id},#{name},#{userId},#{password},#{nickname},#{phone},#{addr1},#{addr2},#{addr3},#{email},#{gender},#{birth},1,null,now())
 </insert>
 
 </mapper>

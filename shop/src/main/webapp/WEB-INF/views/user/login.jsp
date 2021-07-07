@@ -7,6 +7,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <style>
 body {
+	
    font: 13px/20px 'Helvetica Neue', Helvetica, Arial, sans-serif;
    color: #333333;
    background: #596778;
@@ -239,7 +240,7 @@ function enterKeyCheck(){
 <body>
 
 <form class="signUp" id="signupForm">
-   <h1 class="signUpTitle">로그인</h1>
+   <h1 class="signUpTitle">알뜰시장</h1>
    <input type="text" id="userId" class="signUpInput" placeholder="ID" autofocus onkeyup="enterKeyCheck()">
    <input type="password" id="password" class="signUpInput" placeholder="Password" onkeyup="enterKeyCheck()">
    <input type="button" value="로그인" onclick="loginValidation()" class="loginButton">
