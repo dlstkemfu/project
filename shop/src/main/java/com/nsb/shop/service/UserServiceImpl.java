@@ -16,7 +16,8 @@ public class UserServiceImpl implements UserService {
 	public Members getUserOne(String common, String col) {
 		return userDAO.getUserOne(common, col);
 	}
-
+	
+	
 	@Override
 	public int userJoin(Members members) {
 		return userDAO.userJoin(members);
