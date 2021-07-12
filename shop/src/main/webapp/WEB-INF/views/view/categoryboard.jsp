@@ -38,7 +38,7 @@ th, td {
 			</tr>
 		</thead>
 
-		<c:forEach var="b" items="${list }">
+		<c:forEach var="b" items="${result }">
 			<fmt:formatDate value="${b.createtime}" pattern="yyyy-MM-dd HH:MM:ss"
 				var="dateFormat_cr" />
 			<tr>

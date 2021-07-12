@@ -132,7 +132,7 @@ public class ViewController {
 			page.setSearchType(searchType);
 			page.setKeyword(keyword);
 			
-			List list = null;
+			List<Board> list = null;
 			list = boardService.boardpageSearch(page.getDisplayPost(), page.getPostNum(), searchType , keyword);
 			ModelAndView mav = new ModelAndView();
 			
@@ -142,7 +142,17 @@ public class ViewController {
 			mav.addObject("select", num);
 			
 			return mav;
+		}
 			
+		
+		@RequestMapping(value = "view/categoryboard",method = RequestMethod.GET)
+		public ModelAndView categoryboard(String category) {
+			List result =boardService.categoryboard(category);
+			ModelAndView mav = new ModelAndView();
+			System.out.print(category);
+			mav.addObject("result", result);
+
+			return mav;
 			
 	}
 	

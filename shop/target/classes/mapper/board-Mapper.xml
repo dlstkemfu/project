@@ -92,6 +92,10 @@ limit #{displayPost},#{postNum}
  
 </select>
 
+<!--카테고리 별 게시물 출력 -->
+<select id="categoryboard" resultType="board">
+SELECT * FROM board where category = #{category};
+</select>
 
 
 

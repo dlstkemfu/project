@@ -47,6 +47,7 @@
 </table>
 <li>
  <a href="/view/boardpage?num=1">글 목록(페이징)</a> 
+ 
 </li>
 
 <div>

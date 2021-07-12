@@ -61,6 +61,13 @@ public class BoardServiceImpl implements BoardService {
 		
 	}
 	
+	//카테고리 별 게시판
+	
+	public List<Board> categoryboard(String category){
+		return boardDAO.categoryboard(category);
+	}
+	
+	
 	
 	
 }

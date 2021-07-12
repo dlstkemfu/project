@@ -18,4 +18,7 @@ public interface BoardService {
 	List boardpage(int displayPost, int postNum);
 	List boardpageSearch(int displayPost, int postNum, String searchType, String keyword);
 	int searchCount(String searchType, String keyword);
+
+	// 카테고리 별 리스트
+	List categoryboard(String category);
 }

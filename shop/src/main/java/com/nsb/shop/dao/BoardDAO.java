@@ -18,6 +18,12 @@ public class BoardDAO {
 	public List<Board> getBoardList() {
 		return sqlSession.selectList("getBoardList");
 	}
+	
+	//카테고리 별 게시판
+	public List<Board> categoryboard(String category){
+		
+		return sqlSession.selectList("categoryboard",category);
+	}
 
 	public int boardwrite(Board board) {
 
