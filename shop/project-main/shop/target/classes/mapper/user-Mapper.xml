@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.user-Mapper">
+
+<select id="getUserOne" resultType="members">
+SELECT * FROM members 
+<if test="userId != null">
+where userId = #{userId};
+</if>
+<if test="nickname != null">
+where nickname = #{nickname};
+</if>
+</select>
+
+<insert id="userJoin">
+insert into members (id,name,userId,password,nickname,phone,addr1,addr2,addr3,email,gender,birth,authority,declaration,createtime)
+values (#{id},#{name},#{userId},#{password},#{nickname},#{phone},#{addr1},#{addr2},#{addr3},#{email},#{gender},#{birth},1,null,now())
+</insert>
+
+</mapper>

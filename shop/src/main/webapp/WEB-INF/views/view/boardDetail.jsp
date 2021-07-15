@@ -70,6 +70,9 @@ function boardDelete(id) {
 	}
 	}
 }
+
+
+
 </script>
 
 </head>
@@ -87,10 +90,7 @@ function boardDelete(id) {
 					<th>내용:</th>
 					<td>${result.content}</td>
 				</tr>
-				<tr>
-					<th>분류:</th>
-					<td>${result.category}</td>
-				</tr>
+				
 
 				<tr>
 					<th>이미지:</th>

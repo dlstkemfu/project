@@ -51,34 +51,39 @@ th, td {
 		</c:forEach>
 	</table>
 	
-	 <a href="/view/categoryboard?category=가구">카테고리:가구</a>
- <a href="/view/categoryboard?category=의류">카테고리:의류</a>
- <a href="/view/categoryboard?category=전자제품">카테고리:전자제품</a>
- <a href="/view/categoryboard?category=스포츠">카테고리:스포츠</a>
+	 <a href="/view/categoryboard?num=1&category=1">카테고리:가구</a>
+ <a href="/view/categoryboard?num=1&category=2">카테고리:의류</a>
+ <a href="/view/categoryboard?num=1&category=3">카테고리:전자제품</a>
+ <a href="/view/categoryboard?num=1&category=4">카테고리:스포츠</a>
 
 <div>
+	<c:set var="b" value="${result }"/>
 	<c:if test="${page.prev}">
-		<span>[ <a href="/view/boardpage?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a>
+		<span>[ <a href="/view/categoryboard?num=${page.startPageNum - 1}&category=${category}${page.searchTypeKeyword}">이전</a>
 			]
 		</span>
 	</c:if>
 
 	<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
 		var="num">
+	
 		<span> 
 		
 		<c:if test="${select != num}">
-		<a href="/view/boardpage?num=${num}${page.searchTypeKeyword}">${num}</a>
+		
+		<a href="/view/categoryboard?num=${num}&category=${category}${page.searchTypeKeyword}">${num}</a>
+		
 		</c:if>    
-  
+ 
   <c:if test="${select == num}">
    <b>${num}</b>
   </c:if>
 		</span>
 	</c:forEach>
+	
 
 	<c:if test="${page.next}">
-		<span>[ <a href="/view/boardpage?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a>
+		<span>[ <a href="/view/categoryboard?num=${page.endPageNum + 1}&category=${category}${page.searchTypeKeyword}">다음</a>
 			]
 		</span>
 	</c:if>

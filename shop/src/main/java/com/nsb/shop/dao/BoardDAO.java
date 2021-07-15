@@ -67,7 +67,7 @@ public class BoardDAO {
 		return sqlSession.selectList("boardpage",map);
 	}
 	
-	public List<Board> boardpageSearch(int displayPost, int postNum, String searchType, String keyword){
+	public List<Board> boardpageSearch(int displayPost, int postNum, String searchType, String keyword, String category){
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		  
 		  map.put("displayPost", displayPost);
@@ -75,16 +75,16 @@ public class BoardDAO {
 		  
 		  map.put("searchType", searchType);
 		  map.put("keyword", keyword);
-		  
+		  map.put("category", category);
 		  return sqlSession.selectList("boardpageSearch",map);
 	}
 	
 	// 게시물 총 갯수 + 검색 적용
 		
-		public int searchCount(String searchType, String keyword){
+		public int searchCount(String category, String searchType, String keyword){
 		 
 		 HashMap data = new HashMap();
-		 
+		 data.put("category", category);
 		 data.put("searchType", searchType);
 		 data.put("keyword", keyword);
 		 

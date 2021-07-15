@@ -48,6 +48,10 @@
 <li>
  <a href="/view/boardpage?num=1">글 목록(페이징)</a> 
  
+ <a href="/view/categoryboard?num=1&category=1">카테고리:가구</a>
+ <a href="/view/categoryboard?num=1&category=2">카테고리:의류</a>
+ <a href="/view/categoryboard?num=1&category=3">카테고리:전자제품</a>
+ <a href="/view/categoryboard?num=1&category=4">카테고리:스포츠</a>
 </li>
 
 <div>

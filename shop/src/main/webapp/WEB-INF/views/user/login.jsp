@@ -12,7 +12,6 @@ body {
    color: #333333;
    background: #596778;
 }
-
 .signUp {
    position: relative;
    margin: 50px auto;
@@ -24,7 +23,6 @@ body {
    -webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25);
 }
-
 .signUp:before,
 .signUp:after {
    content: '';
@@ -37,12 +35,10 @@ body {
    border-bottom: 1px solid #D2D2D2;
    border-radius: 4px;
 }
-
 .signUp:after {
    bottom: 3px;
    border-color: #DCDCDC;
 }
-
 .signUpTitle {
    margin: -25px -25px 25px;
    padding: 15px 25px;
@@ -54,7 +50,6 @@ body {
    text-shadow: 0 1px rgba(255, 255, 255, 0.75);
    background: #F7F7F7;
 }
-
 .signUpTitle:before {
    content: '';
    position: absolute;
@@ -69,7 +64,6 @@ body {
    background-image: -o-linear-gradient(left, #C4E17F, #C4E17F 12.5%, #F7FDCC 12.5%, #F7FDCA 25%, #FECF71 25%, #FECF71 37.5%, #F0776C 37.5%, #F0776C 50%, #DB9DBE 50%, #DB9DBE 62.5%, #C49CDE 62.5%, #C49CDE 75%, #669AE1 75%, #669AE1 87.5%, #62C2E4 87.5%, #62C2E4);
    background-image: linear-gradient(to right, #C4E17F, #C4E17F 12.5%, #F7FDCA 12.5%, #F7FDCA 25%, #FECF71 25%, #FECF71 37.5%, #F0776C 37.5%, #F0776C 50%, #DB9DBE 50%, #DB9CBE 62.5%, #c49cde 62.5%, #C49CDE 75%, #669AE1 75%, #669AE1 87.5%, #62c2e4 87.5%, #62C2E4);
 }
-
 input {
    font-family: inherit;
    color: inherit;
@@ -77,7 +71,6 @@ input {
    -moz-box-sizing: border-box;
    box-sizing: border-box;
 }
-
 .signUpInput {
    width: 100%;
    height: 50px;
@@ -90,18 +83,15 @@ input {
    -webkit-box-shadow: inset 0 -2px #EBEBEB;
    box-shadow: inset 0 -2px #EBEBEB;
 }
-
 .signUpInput:focus {
    border-color: #62C2E4;
    outline: none;
    -webkit-box-shadow: inset 0 -2px #62C2E4;
    box-shadow: inset 0 -2px #62C2E4;
 }
-
 .lt-ie9 .signUpInput {
    line-height: 48px;
 }
-
 .loginButton {
    position: relative;
    vertical-align: top;
@@ -120,14 +110,12 @@ input {
    -webkit-box-shadow: inset 0 -2px #D76B60;
    box-shadow: inset 0 -2px #D76B60;
 }
-
 .loginButton:active {
    top: 1px;
    outline: none;
    -webkit-box-shadow: none;
    box-shadow: none;
 }
-
 .signUpButton {
    position: relative;
    vertical-align: top;
@@ -146,35 +134,29 @@ input {
    -webkit-box-shadow: inset 0 -2px #D76B60;
    box-shadow: inset 0 -2px #D76B60;
 }
-
 .signUpButton:active {
    top: 1px;
    outline: none;
    -webkit-box-shadow: none;
    box-shadow: none;
 }
-
 :-moz-placeholder {
    color: #AAAAAA;
    font-weight: 300;
 }
-
 ::-moz-placeholder {
    color: #AAAAAA;
    opacity: 1;
    font-weight: 300;
 }
-
 ::-webkit-input-placeholder {
    color: #AAAAAA;
    font-weight: 300;
 }
-
 :-ms-input-placeholder {
    color: #AAAAAA;
    font-weight: 300;
 }
-
 ::-moz-focus-inner {
    border: 0;
    padding: 0;
@@ -182,7 +164,6 @@ input {
 </style>
 
 <script type="text/javascript">
-
 function loginValidation(){
 	
 	var userId = $("#userId").val();
@@ -201,7 +182,6 @@ function loginValidation(){
 	}
 	
 }
-
 function login(userId,password){
 	
 	$.ajax({
@@ -216,14 +196,13 @@ function login(userId,password){
 				alert("아이디 혹은 비밀번호가 맞지 않습니다.");
 				return false;
 			}else if(data == 3){
-				location.href="/view/dashboard";
+				location.href='/view/dashboard';
 			}
 		}
 		
 	})
 	
 }
-
 function enterKeyCheck(){
 	
  if(event.keyCode == 13)
@@ -233,7 +212,6 @@ function enterKeyCheck(){
 	
 	
 }
-
 </script>
 
 </head>

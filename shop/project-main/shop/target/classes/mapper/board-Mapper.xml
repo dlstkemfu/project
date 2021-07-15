@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.board-Mapper">
+
+<select id="getBoardList" resultType="board">
+SELECT * FROM board order BY id DESC;
+</select>
+
+<insert id="boardwrite">
+insert into board (id,category,title,content,region,choose,object,price,users,views,createtime,updatetime,ThumImg,Img) 
+values(#{id},#{category},#{title},#{content},null,null,null,null,#{users},#{views},now(),null,#{ThumImg},#{Img});
+</insert>
+
+<select id="getBoardDetail" resultType="board">
+SELECT * FROM board where id = #{id};
+</select>
+
+<!-- update -->
+<update id="viewUpdate">
+UPDATE board SET views = views+1 WHERE id = #{id}
+</update>
+
+<!-- delete-->
+<delete id="boardDelete" parameterType="int">
+DELETE FROM board WHERE id = #{id}
+</delete>
+
+<!-- update-->
+<update id="boardUpdate" >
+UPDATE board SET title = #{title}, content = #{content}	WHERE	id = #{id} 
+</update>
+
+<!-- 게시물 총 갯수-->
+<select id ="boardcount" resultType="int">
+SELECT count(*) FROM board 
+</select>
+
+
+
+
+<!-- 게시물 페이지-->
+<select id="boardpage"  resultType="board">
+SELECT * FROM board order BY id DESC
+limit #{displayPost},#{postNum}
+</select>
+
+
+<!--검색-->
+<select id="boardpageSearch"  resultType="board">
+SELECT * FROM board
+
+<if test='searchType.equals("title")'>
+ WHERE title LIKE concat('%', #{keyword},'%')
+</if> 
+
+<if test='searchType.equals("content")'>
+ WHERE content LIKE concat('%', #{keyword},'%')
+</if>
+ 
+<if test='searchType.equals("title_content")'>
+ WHERE title LIKE concat('%', #{keyword},'%') or content LIKE concat('%', #{keyword} , '%')
+</if>
+ 
+<if test='searchType.equals("users")'>
+ WHERE users LIKE concat('%', #{keyword},'%')
+</if>
+ 
+order BY id DESC
+limit #{displayPost},#{postNum}
+</select>
+
+<!-- 게시물 총 갯수 + 검색 적용 -->
+<select id="searchCount" parameterType="hashMap" resultType="int">
+ SELECT count(*) FROM board 
+  
+ <if test='searchType.equals("title")'>
+  WHERE title LIKE concat('%', #{keyword}, '%')
+ </if>
+ 
+ <if test='searchType.equals("content")'>
+  WHERE content LIKE concat('%', #{keyword}, '%')
+ </if>
+ 
+ <if test='searchType.equals("title_content")'>
+  WHERE title LIKE concat('%', #{keyword}, '%') 
+   or content LIKE concat('%', #{keyword}, '%')
+ </if>
+ 
+ <if test='searchType.equals("users")'>
+  WHERE writer LIKE concat('%', #{keyword}, '%')
+ </if>
+ 
+</select>
+
+<!--카테고리 별 게시물 출력 -->
+<select id="categoryboard" resultType="board">
+SELECT * FROM board where category = #{category};
+</select>
+
+
+
+
+
+
+</mapper>

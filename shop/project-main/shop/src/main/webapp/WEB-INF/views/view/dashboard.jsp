@@ -1,0 +1,69 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/jstlHeader.jsp" %>    
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta charset="UTF-8">
+<title>알뜰시장</title>
+
+
+<style>
+  table {
+    width: 100%;
+    border: 1px solid #444444;
+  }
+  th, td {
+    border: 1px solid #444444;
+  }
+</style>
+</head>
+<body>
+
+				
+<p>환영합니다 ${sessionScope.loginUser.userId }님 <a href="/jquery/logout">로그아웃</a></p>
+<p>알뜰시장</p>
+<div>게시글 리스트</div>
+<table>
+<thead><tr>
+<td>제목</td>
+<td>조회수</td>
+<td>내용</td>
+<td>상품사진</td>
+<td>글 작성 날짜</td>
+</tr></thead>
+
+<c:forEach var="b" items="${result }">
+<fmt:formatDate value="${b.createtime}" pattern="yyyy-MM-dd HH:MM:ss" var="dateFormat_cr"/>
+<tr>
+<td><a href="/view/boardDetail?id=${b.id }">${b.title }</a></td>
+<td>${b.views }</td>
+<td>${b.content }</td>
+<td><img src="${b.img}" ></td>
+<td>${dateFormat_cr }</td>
+</tr>
+</c:forEach>
+</table>
+<li>
+ <a href="/view/boardpage?num=1">글 목록(페이징)</a> 
+ 
+</li>
+
+<div>
+  <select name="searchType">
+      <option value="title">제목</option>
+         <option value="content">내용</option>
+      <option value="title_content">제목+내용</option>
+      <option value="users">작성자</option>
+  </select>
+  
+  <input type="text" name="keyword" />
+  
+  <button type="button">검색</button>
+ </div>
+<div> <a href="/view/boardwrite">글 작성하기</a></div>
+
+
+</body>
+</html>

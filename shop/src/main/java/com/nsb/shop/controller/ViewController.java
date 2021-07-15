@@ -127,7 +127,7 @@ public class ViewController {
 			Page page = new Page();
 			
 			page.setNum(num);
-			page.setCount(boardService.searchCount(searchType, keyword));
+			page.setCount(boardService.searchCount( searchType, keyword));
 
 			page.setSearchType(searchType);
 			page.setKeyword(keyword);
@@ -146,10 +146,23 @@ public class ViewController {
 			
 		
 		@RequestMapping(value = "view/categoryboard",method = RequestMethod.GET)
-		public ModelAndView categoryboard(String category) {
-			List result =boardService.categoryboard(category);
+		public ModelAndView categoryboard(@RequestParam("num") int num,@RequestParam(value = "category",required = false, defaultValue = "") String category,@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
+				   @RequestParam(value = "keyword",required = false, defaultValue = "") String keyword) {
+			
+			Page page = new Page();
+			
+			page.setNum(num);
+			page.setCount(boardService.searchCount(category, searchType, keyword));
+
+			page.setSearchType(searchType);
+			page.setKeyword(keyword);
+			
+			
+			List result =boardService.boardpageSearch(page.getDisplayPost(), page.getPostNum(), searchType , keyword, category);
 			ModelAndView mav = new ModelAndView();
-			System.out.print(category);
+			mav.addObject("result" , result);
+			
+			mav.addObject("page", page);	
 			mav.addObject("result", result);
 
 			return mav;

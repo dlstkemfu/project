@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias alias="board" type="com.nsb.shop.logic.Board"/>
+        <typeAlias alias="members" type="com.nsb.shop.logic.Members"/>
+        <typeAlias alias="comments" type="com.nsb.shop.logic.Comments"/>
+        <typeAlias alias="page" type="com.nsb.shop.logic.Page"/>
+        
+    </typeAliases>
+
+    <mappers>
+        <mapper resource="mapper/board-Mapper.xml"/>
+        <mapper resource="mapper/user-Mapper.xml"/>
+        <mapper resource="mapper/comments-Mapper.xml"/>
+    </mappers>
+</configuration>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.comments-Mapper">
+
+<!-- 댓글 조회 -->
+<select id="commentsList"  resultType="comments">
+	select
+		cno, id, writer, comtCon, regDate
+	from comments
+		where id = #{id}		
+</select>
+
+<!-- 댓글 작성 -->
+<insert id="commentsWrite" >
+	insert into comments(cno,id, writer, comtCon, regDate)
+		values(#{cno}, #{id}, #{writer}, #{comtCon}, now())
+</insert>
+
+<!-- 댓글 삭제-->
+<delete id="commentsDelete" parameterType="int">
+DELETE FROM comments WHERE cno = #{cno}
+</delete>
+
+<!-- 댓글 수정-->
+<update id="commentsUpdate">
+UPDATE comments SET comtCon = #{comtCon} WHERE cno = #{cno}
+</update>
+
+<!-- 댓글 선택 -->
+<select id="getCommentsDetail" resultType="Comments">
+SELECT * FROM comments where cno = #{cno};
+</select>
+
+</mapper>

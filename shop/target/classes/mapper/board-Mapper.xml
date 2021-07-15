@@ -50,11 +50,11 @@ limit #{displayPost},#{postNum}
 SELECT * FROM board
 
 <if test='searchType.equals("title")'>
- WHERE title LIKE concat('%', #{keyword},'%')
+ WHERE title LIKE concat('%', #{keyword},'%') and category = #{category}
 </if> 
 
 <if test='searchType.equals("content")'>
- WHERE content LIKE concat('%', #{keyword},'%')
+ WHERE content LIKE concat('%', #{keyword},'%') and category = #{category}
 </if>
  
 <if test='searchType.equals("title_content")'>
@@ -62,7 +62,7 @@ SELECT * FROM board
 </if>
  
 <if test='searchType.equals("users")'>
- WHERE users LIKE concat('%', #{keyword},'%')
+ WHERE users LIKE concat('%', #{keyword},'%') and category = #{category}
 </if>
  
 order BY id DESC
@@ -74,11 +74,11 @@ limit #{displayPost},#{postNum}
  SELECT count(*) FROM board 
   
  <if test='searchType.equals("title")'>
-  WHERE title LIKE concat('%', #{keyword}, '%')
+  WHERE title LIKE concat('%', #{keyword}, '%') and category = #{category}
  </if>
  
  <if test='searchType.equals("content")'>
-  WHERE content LIKE concat('%', #{keyword}, '%')
+  WHERE content LIKE concat('%', #{keyword}, '%')  and category = #{category}
  </if>
  
  <if test='searchType.equals("title_content")'>
@@ -87,7 +87,7 @@ limit #{displayPost},#{postNum}
  </if>
  
  <if test='searchType.equals("users")'>
-  WHERE writer LIKE concat('%', #{keyword}, '%')
+  WHERE writer LIKE concat('%', #{keyword}, '%')  and category = #{category}
  </if>
  
 </select>
