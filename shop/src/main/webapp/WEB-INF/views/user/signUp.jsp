@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/jstlHeader.jsp" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,34 +131,35 @@
 </head>
 <body style="background-color: ffffff">
 	<form id="registerform">
-		<div class="fieldlabel">
+		<div class="form-group">
 			<label for="name">*이름</label>
 		</div>
-		<div class="formfield">
+		<div class="form-group">
 			<input type="text" id="name" name="name" maxlength="20" value="">
 		</div>
 
-		<div class="fieldlabel">
+		<div class="form-group">
 			<label for="userId">*아이디</label>
 		</div>
-		<div class="formfield">
+		
+		<div class="form-group">
 			<input type="text" id="userId" name="userId" maxlength="20" value="">
 		</div>
 
 
 
-		<div class="fieldlabel">
+		<div class="form-group">
 			<label for="password">*패스워드</label>
 		</div>
-		<div class="formfield">
+		<div class="form-group">
 			<input type="password" id="password" name="password" maxlength="20"
 				autocomplete="off">
 		</div>
 
-		<div class="fieldlabel">
+		<div class="form-group">
 			<label for="passwordCheck">패스워드확인</label>
 		</div>
-		<div class="formfield">
+		<div class="form-group">
 
 			<input type="password" id="passwordCheck" name="passwordCheck"
 				maxlength="20" autocomplete="off">
@@ -165,21 +167,21 @@
 
 
 
-		<div class="fieldlabel">
+		<div class="form-group">
 			<label for="nickname">*별명</label>
 		</div>
-		<div class="formfield">
+		<div class="form-group">
 			<input type="text" id="nickname" name="nickname" maxlength="20"
 				value="">
 		</div>
 
-		<div class="fieldlabel">
+		<div class="form-group">
 			<label for="address">*주소</label>
 		</div>
 
 
 		</div>
-		<div class="formfield">
+		<div class="form-group">
 			<input class="form-control" style="width: 30%; display: inline;"
 				placeholder="우편번호" name="addr1" id="addr1" type="text"
 				readonly="readonly">
@@ -187,28 +189,26 @@
 				<i class="fa fa-search"></i> 우편번호 찾기
 			</button>
 		</div>
-		<div class="formfield">
+		<div class="form-group">
 			<input class="form-control" style="width: 30%; display: inline;"
 				placeholder="도로명 주소" name="addr2" id="addr2" type="text"
 				readonly="readonly" />
 		</div>
-		<div class="formfield">
+		<div class="form-group">
 			<input class="form-control" style="width: 30%; display: inline;"
 				placeholder="상세주소" name="addr3" id="addr3" type="text" />
 		</div>
 
-		<div class="fieldlabel">
+		<div class="form-group">
 			<label for="phone">*전화번호</label>
-		</div>
-		</form>
-		<form method="post"  id="phonechk" >
 			<input type="text" id="phone" name="phone" maxlength="20" value="">
-		</form>
-		<form>
-		<div class="fieldlabel">
+			<span class="help-block">전화번호는 반드시 010-****-****형태로 입력해주세요!</span>
+		</div>
+		
+		<div class="form-group">
 			<label for="email">*이메일</label>
 		</div>
-		<div class="formfield">
+		<div class="form-group">
 			<input type="text" id="email" name="email" size="20" maxlength="20"
 				value="" autocomplete="off"><span>@</span> <input
 				id="domain" list="domains" name="domain" placeholder="도메인입력/선택">
@@ -220,10 +220,10 @@
 			</datalist>
 		</div>
 
-		<div class="fieldlabel">
+		<div class="form-group">
 			<label for="gender">*성별</label>
 		</div>
-		<div class="formfield">
+		<div class="form-group">
 			<input type="radio" id="male" name="gender" value="1"> <label
 				for="male">남성</label><br> <input type="radio" id="female"
 				name="gender" value="0"> <label for="female">여성</label><br>

@@ -8,7 +8,7 @@ SELECT * FROM board order BY id DESC;
 
 <insert id="boardwrite">
 insert into board (id,category,title,content,region,choose,object,price,users,views,createtime,updatetime,ThumImg,Img) 
-values(#{id},#{category},#{title},#{content},null,null,null,null,#{users},#{views},now(),null,#{ThumImg},#{Img});
+values(#{id},#{category},#{title},#{content},null,null,null,#{price},#{users},#{views},now(),null,#{ThumImg},#{Img});
 </insert>
 
 <select id="getBoardDetail" resultType="board">
@@ -27,7 +27,7 @@ DELETE FROM board WHERE id = #{id}
 
 <!-- update-->
 <update id="boardUpdate" >
-UPDATE board SET title = #{title}, content = #{content}	WHERE	id = #{id} 
+UPDATE board SET title = #{title}, content = #{content} , price = #{price}	WHERE	id = #{id} 
 </update>
 
 <!-- 게시물 총 갯수-->
@@ -82,8 +82,8 @@ limit #{displayPost},#{postNum}
  </if>
  
  <if test='searchType.equals("title_content")'>
-  WHERE title LIKE concat('%', #{keyword}, '%') 
-   or content LIKE concat('%', #{keyword}, '%')
+  WHERE title LIKE concat('%', #{keyword}, '%') and category = #{category}
+   or content LIKE concat('%', #{keyword}, '%') and category = #{category}
  </if>
  
  <if test='searchType.equals("users")'>
@@ -96,6 +96,8 @@ limit #{displayPost},#{postNum}
 <select id="categoryboard" resultType="board">
 SELECT * FROM board where category = #{category};
 </select>
+
+
 
 
 

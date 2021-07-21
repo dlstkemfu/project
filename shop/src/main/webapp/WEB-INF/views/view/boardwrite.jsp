@@ -48,17 +48,22 @@
 				<tr>
 					<th>카테고리:</th>
 					<td><select class="category" name="category" >
-						<option value="의류">의류</option>
-						<option value="전자제품">전자제품</option>
-						<option value="가구">가구</option>
-						<option value="스포츠">스포츠</option>
+						<option value="2">의류</option>
+						<option value="3">전자제품</option>
+						<option value="1">가구</option>
+						<option value="4">스포츠</option>
 						</select>
 					</td>
-					
-				</tr>	
+				</tr>
+				<tr>	
 					<th>내용:</th>
 					<td><textarea cols="30" rows="10" placeholder="내용을 입력하세요. "
 							id="content" name="content"></textarea></td>
+				</tr>
+				
+				<tr>	
+					<th>가격:</th>
+					<td><input type="text" placeholder="가격을 입력하세요. " id="price" name="price" /></td>
 				</tr>
 				
 				<div class="inputArea">

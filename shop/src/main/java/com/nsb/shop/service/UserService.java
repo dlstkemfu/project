@@ -6,5 +6,6 @@ public interface UserService {
 
 	Members getUserOne(String common, String col);
 	int userJoin(Members members);
-
+	int memberUpdate(Members members);
+	Members getuserId(String userId);
 }

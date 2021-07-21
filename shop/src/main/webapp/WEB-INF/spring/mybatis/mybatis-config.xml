@@ -6,6 +6,7 @@
         <typeAlias alias="members" type="com.nsb.shop.logic.Members"/>
         <typeAlias alias="comments" type="com.nsb.shop.logic.Comments"/>
         <typeAlias alias="page" type="com.nsb.shop.logic.Page"/>
+        <typeAlias alias="Keep" type="com.nsb.shop.logic.Keep"/>
         
     </typeAliases>
 
@@ -13,5 +14,6 @@
         <mapper resource="mapper/board-Mapper.xml"/>
         <mapper resource="mapper/user-Mapper.xml"/>
         <mapper resource="mapper/comments-Mapper.xml"/>
+         <mapper resource="mapper/keep-Mapper.xml"/>
     </mappers>
 </configuration>

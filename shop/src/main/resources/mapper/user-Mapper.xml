@@ -17,4 +17,14 @@ insert into members (id,name,userId,password,nickname,phone,addr1,addr2,addr3,em
 values (#{id},#{name},#{userId},#{password},#{nickname},#{phone},#{addr1},#{addr2},#{addr3},#{email},#{gender},#{birth},1,null,now())
 </insert>
 
+<!-- update-->
+<update id="memberUpdate" >
+UPDATE members SET password = #{password}, phone = #{phone},email = #{email} 	WHERE	userId = #{userId} 
+</update>
+
+<!-- 회원정보 가져오기-->
+<select id="getUserId" resultType="members">
+SELECT * FROM members where userId = #{userId};
+</select>
+
 </mapper>

@@ -13,6 +13,7 @@ function boardUpdateCheck(){
 	
 	var title = $("#title").val();
 	var content = $("#content").val();
+	var price = $("#price").val();
 	var id =$("#id").val();
 	
 	if(!title){
@@ -26,7 +27,7 @@ function boardUpdateCheck(){
 	}else if(${sessionScope.userId != result.users}){
 		alert("작성자만 삭제할수있습니다");
 	}else{
-		boardUpdate(title,content,id);
+		boardUpdate(title,content,price,id);
 	}
 		
 		
@@ -34,7 +35,7 @@ function boardUpdateCheck(){
 	
 }
 
-function boardUpdate(title,content,id){
+function boardUpdate(title,content,price,id){
 	
 	$.ajax({
 		
@@ -43,6 +44,7 @@ function boardUpdate(title,content,id){
 		data : {
 			title : title,
 			content : content,
+			price : price,
 			id :id
 			
 			
@@ -85,9 +87,13 @@ function boardUpdate(title,content,id){
 					<th>내용:</th>
 					<td><input type="text" value="${result.content} "  	id="content"></textarea></td>
 				</tr>
+				<tr>	
+					<th>가격:</th>
+					<td><input type="text" value="${result.price} " id="price"  /></td>
+				</tr>
 				<tr>
-					<th>글번호:</th>
-					<td><input type="text" value="${result.id} " id="id" /></td>
+					
+					<td><input type="hidden" value="${result.id} " id="id" /></td>
 				</tr>
 
 

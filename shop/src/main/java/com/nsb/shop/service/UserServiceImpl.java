@@ -16,11 +16,22 @@ public class UserServiceImpl implements UserService {
 	public Members getUserOne(String common, String col) {
 		return userDAO.getUserOne(common, col);
 	}
-	
-	
+
 	@Override
 	public int userJoin(Members members) {
 		return userDAO.userJoin(members);
 	}
 
+	// 회원정보 수정
+	@Override
+	public int memberUpdate(Members members) {
+
+		return userDAO.memberUpdate(members);
+	}
+	
+	//회원정보 가져오기
+	@Override
+	public Members getuserId(String userId) {
+		return userDAO.getUserId(userId);
+	}
 }

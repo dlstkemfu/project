@@ -12,9 +12,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.nsb.shop.logic.Board;
 import com.nsb.shop.logic.Comments;
+import com.nsb.shop.logic.Members;
 import com.nsb.shop.logic.Page;
 import com.nsb.shop.service.BoardService;
 import com.nsb.shop.service.CommentsService;
+import com.nsb.shop.service.KeepService;
+import com.nsb.shop.service.UserService;
 
 @Controller
 @RequestMapping("view/*")
@@ -22,7 +25,13 @@ public class ViewController {
 
 	@Autowired
 	BoardService boardService;
-
+	
+	@Autowired
+	UserService userService;
+	
+	@Autowired
+	KeepService keepService;
+	
 	@Autowired
 	private CommentsService commentsservice;
 
@@ -75,7 +84,7 @@ public class ViewController {
 		return mav;
 
 	}
-
+	// 게시물 수정
 	@RequestMapping(value = "view/boardUpdateView", method = RequestMethod.GET)
 	public ModelAndView boardUpdateView(int id) {
 		Board result = boardService.getBoardDetail(id);
@@ -146,7 +155,7 @@ public class ViewController {
 			
 		
 		@RequestMapping(value = "view/categoryboard",method = RequestMethod.GET)
-		public ModelAndView categoryboard(@RequestParam("num") int num,@RequestParam(value = "category",required = false, defaultValue = "") String category,@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
+		public ModelAndView categoryboard(@RequestParam("num") int num,@RequestParam("category") String category,@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
 				   @RequestParam(value = "keyword",required = false, defaultValue = "") String keyword) {
 			
 			Page page = new Page();
@@ -156,18 +165,63 @@ public class ViewController {
 
 			page.setSearchType(searchType);
 			page.setKeyword(keyword);
-			
-			
-			List result =boardService.boardpageSearch(page.getDisplayPost(), page.getPostNum(), searchType , keyword, category);
+			List<Board> result =null;
+			result =boardService.boardpageSearch(page.getDisplayPost(), page.getPostNum(), searchType , keyword, category);
+			System.out.println(category);
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("result" , result);
-			
+			mav.addObject("category" , category);
 			mav.addObject("page", page);	
-			mav.addObject("result", result);
+			mav.addObject("select", num);
 
 			return mav;
 			
 	}
+		
+		//회원정보 수정
+		@RequestMapping(value = "view/membersUpdateView", method = RequestMethod.GET)
+		public ModelAndView membersUpdateView(String userId) {
+			Members result = userService.getuserId(userId);
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("result", result);
+			return mav;
+
+		}
+		
+		// 찜 목록
+
+		@RequestMapping(value = "view/KeepListView", method = RequestMethod.GET)
+		public ModelAndView KeepList(String userId) {
+			List result = keepService.getKeepList(userId);
+			
+		
+			
+			
+			
+			
+		
+			ModelAndView mav = new ModelAndView();
+			mav.addObject("result", result);
+			
+			
+		
+			
+			
+			return mav;
+		}
+		
+		// 찜 삭제
+
+		@RequestMapping(value = "view/KeepDelete", method = RequestMethod.GET)
+		public ModelAndView KeepDelete(@RequestParam("bno") int bno) {
+
+			keepService.KeepDelete(bno);
+			ModelAndView mav = new ModelAndView("redirect:/view/dashboard");
+			return mav;
+
+		}
+		
+		
 	
 	
 	

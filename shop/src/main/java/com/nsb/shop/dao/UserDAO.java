@@ -7,6 +7,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.nsb.shop.logic.Board;
 import com.nsb.shop.logic.Members;
 
 
@@ -35,6 +36,20 @@ public class UserDAO {
 
 	public int userJoin(Members members) {
 		return sqlSession.insert("userJoin", members);
+	}
+	
+	//회원정보 수정
+	public int memberUpdate(Members members) {
+
+		return sqlSession.update("memberUpdate", members);
+
+	}
+	
+	//회원정보 가져오기
+	public Members getUserId(String userId) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		return sqlSession.selectOne("getUserId", map);
 	}
 
 }

@@ -5,6 +5,7 @@ import java.util.Date;
 public class Board {
 	private int id;
 	private int views;
+	private int price;
 	private String category;
 	private String title;
 	private String region;
@@ -17,6 +18,13 @@ public class Board {
 	private String ThumImg;
 	private String Img;
 	
+	
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
+	}
 	public String getImg() {
 		return Img;
 	}

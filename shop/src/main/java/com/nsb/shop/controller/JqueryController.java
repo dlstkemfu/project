@@ -2,25 +2,31 @@ package com.nsb.shop.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import com.nsb.shop.logic.Board;
+import com.nsb.shop.logic.Keep;
 import com.nsb.shop.logic.Comments;
 import com.nsb.shop.logic.Members;
 import com.nsb.shop.service.BoardService;
 import com.nsb.shop.service.CommentsService;
+import com.nsb.shop.service.KeepService;
 import com.nsb.shop.service.UserService;
 import com.nsb.shop.utils.UploadFileUtils;
+
 
 @Controller
 @RequestMapping("jquery/*")
@@ -31,6 +37,9 @@ public class JqueryController {
 
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	KeepService keepService;
 
 	@Autowired
 	private CommentsService commentsservice;
@@ -149,6 +158,18 @@ public class JqueryController {
 
 		return result;
 	}
+	
+	// 회원정보 수정
+
+		@RequestMapping(value = "jquery/membersUpdate", method = RequestMethod.POST)
+		@ResponseBody
+		public int memberUpdate(Members members) {
+			int result = 0;
+
+			result = userService.memberUpdate(members);
+
+			return result;
+		}
 
 	// 댓글 작성
 
@@ -176,5 +197,40 @@ public class JqueryController {
 		result = commentsservice.commentsUpdate(comt);
 		return result;
 	}
+	
+	// 게시판 찜하기
 
+		@RequestMapping(value = "jquery/Keep", method = RequestMethod.POST)
+		@ResponseBody
+		public ModelAndView Keep(@ModelAttribute Keep keep, HttpSession session)
+				throws IOException, Exception {
+
+			int result = 0;
+			String users = (String) session.getAttribute("userId");
+			keep.setUserId(users);
+			
+			List list = keepService.getKeepList(users);
+			
+			
+			
+			
+			
+
+			result =keepService.Keep(keep);
+			ModelAndView mav = new ModelAndView("redirect:/view/boardDetail?id="+keep.getId());
+			
+			
+
+			
+
+			return mav;
+			
+			
+		
+
+
+}
+		
+		
+		
 }
