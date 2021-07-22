@@ -38,12 +38,25 @@ public class ViewController {
 	// 게시판 목록
 
 	@RequestMapping("view/dashboard")
-	public ModelAndView dashboard() {
-		List result = boardService.getBoardList();
+	public ModelAndView dashboard(@RequestParam("num") int num,@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
+			   @RequestParam(value = "keyword",required = false, defaultValue = "") String keyword) {
+		Page page = new Page();
+		
+		page.setNum(num);
+		page.setCount(boardService.searchCount(searchType, keyword));
+
+		page.setSearchType(searchType);
+		page.setKeyword(keyword);
+		List<Board> result =null;
+		result =boardService.viewslist(page.getDisplayPost(), page.getPostNum(), searchType , keyword);
 		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("result", result);
-
+		mav.addObject("result" , result);
+		
+		mav.addObject("page", page);	
+		mav.addObject("select", num);
+		
+		
+		
 		return mav;
 	}
 
@@ -80,7 +93,7 @@ public class ViewController {
 	public ModelAndView boardDelete(@RequestParam("id") int id) {
 
 		boardService.boardDelete(id);
-		ModelAndView mav = new ModelAndView("redirect:/view/dashboard");
+		ModelAndView mav = new ModelAndView("redirect:/view/dashboard?num=1");
 		return mav;
 
 	}
@@ -101,7 +114,7 @@ public class ViewController {
 	public ModelAndView commentsDelete(@RequestParam("cno") int cno) {
 
 		commentsservice.commentsDelete(cno);
-		ModelAndView mav = new ModelAndView("redirect:/view/dashboard");
+		ModelAndView mav = new ModelAndView("redirect:/view/dashboard?num=1" );
 		return mav;
 
 	}
@@ -129,26 +142,16 @@ public class ViewController {
 	//게시판 페이지
 	
 		@RequestMapping(value = "view/boardpage" , method = RequestMethod.GET)
-		public ModelAndView dashboardpage(@RequestParam("num") int num,
+		public ModelAndView dashboardpage(
 				@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
 				   @RequestParam(value = "keyword",required = false, defaultValue = "") String keyword) {
 			
-			Page page = new Page();
 			
-			page.setNum(num);
-			page.setCount(boardService.searchCount( searchType, keyword));
-
-			page.setSearchType(searchType);
-			page.setKeyword(keyword);
 			
-			List<Board> list = null;
-			list = boardService.boardpageSearch(page.getDisplayPost(), page.getPostNum(), searchType , keyword);
+			
 			ModelAndView mav = new ModelAndView();
 			
-			mav.addObject("list" , list);
 			
-			mav.addObject("page", page);
-			mav.addObject("select", num);
 			
 			return mav;
 		}
@@ -161,13 +164,11 @@ public class ViewController {
 			Page page = new Page();
 			
 			page.setNum(num);
-			page.setCount(boardService.searchCount(category, searchType, keyword));
-
+			page.setCount(boardService.searchcategoryCount(category, searchType, keyword));
 			page.setSearchType(searchType);
 			page.setKeyword(keyword);
 			List<Board> result =null;
 			result =boardService.boardpageSearch(page.getDisplayPost(), page.getPostNum(), searchType , keyword, category);
-			System.out.println(category);
 			ModelAndView mav = new ModelAndView();
 			mav.addObject("result" , result);
 			mav.addObject("category" , category);
@@ -216,7 +217,7 @@ public class ViewController {
 		public ModelAndView KeepDelete(@RequestParam("bno") int bno) {
 
 			keepService.KeepDelete(bno);
-			ModelAndView mav = new ModelAndView("redirect:/view/dashboard");
+			ModelAndView mav = new ModelAndView("redirect:/view/dashboard?num=1");
 			return mav;
 
 		}

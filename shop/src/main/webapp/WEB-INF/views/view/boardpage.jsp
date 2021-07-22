@@ -1,116 +1,125 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/jstlHeader.jsp"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/jstlHeader.jsp" %>   
 <!DOCTYPE html>
-<html>
-<head>
-
-<meta charset="UTF-8">
-<title>알뜰시장</title>
-<style>
-table {
-	width: 100%;
-	border: 1px solid #444444;
-}
-th, td {
-	border: 1px solid #444444;
-}
-</style>
-</head>
-<body>
-
-
-	<p>
-		환영합니다 ${sessionScope.loginUser.userId }님 <a href="/jquery/logout">로그아웃</a>
-	</p>
-	<p>알뜰시장</p>
-	<div>게시글 리스트</div>
-	<table>
-		<thead>
-			<tr>
-				<td>제목</td>
-				<td>조회수</td>
-				<td>내용</td>
-				<td>상품사진</td>
-				<td>글 작성 날짜</td>
-			</tr>
-		</thead>
-
-		<c:forEach var="b" items="${list }">
-			<fmt:formatDate value="${b.createtime}" pattern="yyyy-MM-dd HH:MM:ss"
-				var="dateFormat_cr" />
-			<tr>
-				<td><a href="/view/boardDetail?id=${b.id }">${b.title }</a></td>
-				<td>${b.views }</td>
-				<td>${b.content }</td>
-				<td><img src="${b.img}"></td>
-				<td>${dateFormat_cr }</td>
-			</tr>
-		</c:forEach>
-	</table>
-	
-	 <a href="/view/categoryboard?category=가구">카테고리:가구</a>
- <a href="/view/categoryboard?category=의류">카테고리:의류</a>
- <a href="/view/categoryboard?category=전자제품">카테고리:전자제품</a>
- <a href="/view/categoryboard?category=스포츠">카테고리:스포츠</a>
-
-<div>
-	<c:if test="${page.prev}">
-		<span>[ <a href="/view/boardpage?num=${page.startPageNum - 1}${page.searchTypeKeyword}">이전</a>
-			]
-		</span>
-	</c:if>
-
-	<c:forEach begin="${page.startPageNum}" end="${page.endPageNum}"
-		var="num">
-		<span> 
-		
-		<c:if test="${select != num}">
-		<a href="/view/boardpage?num=${num}${page.searchTypeKeyword}">${num}</a>
-		</c:if>    
+<html lang="ko">
+  <head>
   
-  <c:if test="${select == num}">
-   <b>${num}</b>
-  </c:if>
-		</span>
-	</c:forEach>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 위 3개의 메타 태그는 *반드시* head 태그의 처음에 와야합니다; 어떤 다른 콘텐츠들은 반드시 이 태그들 *다음에* 와야 합니다 -->
+    <title>알뜰시장</title>
 
-	<c:if test="${page.next}">
-		<span>[ <a href="/view/boardpage?num=${page.endPageNum + 1}${page.searchTypeKeyword}">다음</a>
-			]
-		</span>
-	</c:if>
-</div>
-	<div>
-		<select name="searchType">
-			<option value="title"
-				<c:if test="${page.searchType eq 'title'}">selected</c:if>>제목</option>
-			<option value="content"
-				<c:if test="${page.searchType eq 'content'}">selected</c:if>>내용</option>
-			<option value="title_content"
-				<c:if test="${page.searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
-			<option value="users"
-				<c:if test="${page.searchType eq 'users'}">selected</c:if>>작성자</option>
-		</select> 
-		<input type="text" name="keyword" value="${page.keyword}" />
+   
 
-		<button type="button" id="searchBtn">검색</button>
-	</div>
+    <!-- IE8 에서 HTML5 요소와 미디어 쿼리를 위한 HTML5 shim 와 Respond.js -->
+    <!-- WARNING: Respond.js 는 당신이 file:// 을 통해 페이지를 볼 때는 동작하지 않습니다. -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    
+    <nav class="navbar navbar-default  navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+     
+      <ul class="nav navbar-nav">
+      <li class="active"><a href="/view/dashboard?num=1">알뜰시장</a></li></ul>
+    </div>
 
-	<script>
-		document.getElementById("searchBtn").onclick = function() {
-			let searchType = document.getElementsByName("searchType")[0].value;
-			let keyword = document.getElementsByName("keyword")[0].value;
-			location.href = "/view/boardpage?num=1" + "&searchType="
-					+ searchType + "&keyword=" + keyword;
-		};
-	</script>
-	<div>
-		<a href="/view/boardwrite">글 작성하기</a>
-	</div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    
+      <ul class="nav navbar-nav navbar-right">
+        
+      <li class="navbar-brand">  환영합니다 ${sessionScope.loginUser.userId }님</li>
+       <li class="active"><a href="/jquery/logout">로그아웃</a></li>
+       <li class="active"><a href="membersUpdateView?userId=${sessionScope.loginUser.userId }">회원정보 수정 </a></li>
+       <li class="active"><a href='KeepListView?userId=${sessionScope.loginUser.userId }'>찜목록</a></li>
+       
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+  </head>
+ 
+  <body>
+  
+  <style >
+  body { padding-top: 50px;   }
+  </style>
+  <style>
+  /* 사이드바 래퍼 스타일 */
+  
+  #page-wrapper {
+    padding-left: 250px;
+  }
+  
+  #sidebar-wrapper {
+    position: fixed;
+    width: 200px;
+    height: 60%;
+    margin-left: -250px;
+    background: #caffbf;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+  #page-content-wrapper {
+    width: 100%;
+    padding: 20px;
+  }
+  /* 사이드바 스타일 */
+  
+  .sidebar-nav {
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .sidebar-nav li {
+    text-indent: 1.5em;
+    line-height: 2.8em;
+  }
+  
+  .sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #999;
+  }
+  
+  .sidebar-nav li a:hover {
+    color: #000;
+    background: rgba(255, 255, 255, 0.2);
+  }
+  
+  .sidebar-nav > .sidebar-brand {
+    font-size: 1.3em;
+    line-height: 3em;
+  }
 
+</style>
 
-</body>
+<div id="page-wrapper">
+  <!-- 사이드바 -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a>카테고리</a>
+      </li>
+      <li><a href="/view/categoryboard?num=1&category=1">가구</a></li>
+      <li><a href="/view/categoryboard?num=1&category=2">의류</a></li>
+      <li><a href="/view/categoryboard?num=1&category=3">전자제품</a></li>
+      <li><a href="/view/categoryboard?num=1&category=4">스포츠</a></li>
+     
+    </ul>
+  </div>
+  <!-- /사이드바 -->
+
+  <!-- 본문 -->
+  
+    
+  </body>
 </html>

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/jstlHeader.jsp"%>
+<%@ include file="/WEB-INF/views/view/boardpage.jsp"%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,7 +37,7 @@
 
 
 		<table>
-			<caption>게시판 글쓰기</caption>
+			<caption><h2>게시판 글쓰기</h2></caption>
 			<tbody>
 
 
@@ -44,7 +45,7 @@
 					<th>제목:</th>
 					<td><input type="text" placeholder="제목을 입력하세요. " id="title" name="title" /></td>
 				</tr>
-				<tr>
+				
 				<tr>
 					<th>카테고리:</th>
 					<td><select class="category" name="category" >
@@ -63,15 +64,17 @@
 				
 				<tr>	
 					<th>가격:</th>
-					<td><input type="text" placeholder="가격을 입력하세요. " id="price" name="price" /></td>
+					<td><input type="text" placeholder="가격을 입력하세요. " id="price" name="price" />원</td>
 				</tr>
-				
+				<tr>
 				<div class="inputArea">
-					<label for="Img">이미지</label> <input type="file" id="Img"
-						name="file" />
-					<div class="select_img">
-						<img src="" />
+					<td><label for="Img">이미지</label></td>
+					<td> <input type="file" id="Img"
+						name="file" /></td>
+					<td><div class="select_img">
+						<img src="" /></td>
 					</div>
+					</tr>
 					<script>
 						$("#Img").change(
 								function() {
@@ -88,14 +91,14 @@
 					</script>
 
 				</div>
-				<%=request.getRealPath("/")%>
+				
 				
 
 
 				<tr>	
 					<td colspan="2"><input type="button" value="등록" onclick="boardValidation()"
 						 /> <input type="button" value="뒤로"
-						onclick="javascript:location.href='dashboard'" /></td>
+						onclick="javascript:location.href='dashboard?num=1'" /></td>
 				</tr>
 			</tbody>
 		</table>

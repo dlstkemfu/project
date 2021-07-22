@@ -79,17 +79,41 @@ public class BoardDAO {
 		  return sqlSession.selectList("boardpageSearch",map);
 	}
 	
-	// 게시물 총 갯수 + 검색 적용
+	//조회수리스트
+	
+	public List<Board> viewslist(int displayPost, int postNum, String searchType, String keyword){
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		  
+		  map.put("displayPost", displayPost);
+		  map.put("postNum", postNum);
+		  
+		  map.put("searchType", searchType);
+		  map.put("keyword", keyword);
+		  return sqlSession.selectList("viewslist",map);
+	}
+	
+	// 카테고리별게시물 총 갯수 + 검색 적용
 		
-		public int searchCount(String category, String searchType, String keyword){
+		public int searchcategoryCount(String category, String searchType, String keyword){
 		 
-		 HashMap data = new HashMap();
+			HashMap<String, Object> data = new HashMap<String, Object>();
 		 data.put("category", category);
 		 data.put("searchType", searchType);
 		 data.put("keyword", keyword);
 		 
-		 return sqlSession.selectOne("searchCount", data); 
+		 return sqlSession.selectOne("searchcategoryCount", data); 
 		}
+		
+		// 개시물 총 갯수 +검색적용
+		public int searchCount(String searchType, String keyword) {
+			HashMap<String, Object> data = new HashMap<String, Object>();
+			 
+			 data.put("searchType", searchType);
+			 data.put("keyword", keyword);
+			 
+			 return sqlSession.selectOne("searchCount", data); 
+			}
+		}
+		
 	
 
-}

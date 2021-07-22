@@ -57,10 +57,6 @@ SELECT * FROM board
  WHERE content LIKE concat('%', #{keyword},'%') and category = #{category}
 </if>
  
-<if test='searchType.equals("title_content")'>
- WHERE title LIKE concat('%', #{keyword},'%') or content LIKE concat('%', #{keyword} , '%')
-</if>
- 
 <if test='searchType.equals("users")'>
  WHERE users LIKE concat('%', #{keyword},'%') and category = #{category}
 </if>
@@ -69,8 +65,28 @@ order BY id DESC
 limit #{displayPost},#{postNum}
 </select>
 
-<!-- 게시물 총 갯수 + 검색 적용 -->
-<select id="searchCount" parameterType="hashMap" resultType="int">
+<!--조회수검색-->
+<select id="viewslist"  resultType="board">
+SELECT * FROM board
+
+<if test='searchType.equals("title")'>
+ WHERE title LIKE concat('%', #{keyword},'%') 
+</if> 
+
+<if test='searchType.equals("content")'>
+ WHERE content LIKE concat('%', #{keyword},'%') 
+</if>
+ 
+<if test='searchType.equals("users")'>
+ WHERE users LIKE concat('%', #{keyword},'%') 
+</if>
+ 
+order BY views DESC
+limit #{displayPost},#{postNum}
+</select>
+
+<!-- 게시물 총 갯수 ,카테고리포함 + 검색 적용 -->
+<select id="searchcategoryCount" parameterType="hashMap" resultType="int">
  SELECT count(*) FROM board 
   
  <if test='searchType.equals("title")'>
@@ -81,13 +97,26 @@ limit #{displayPost},#{postNum}
   WHERE content LIKE concat('%', #{keyword}, '%')  and category = #{category}
  </if>
  
- <if test='searchType.equals("title_content")'>
-  WHERE title LIKE concat('%', #{keyword}, '%') and category = #{category}
-   or content LIKE concat('%', #{keyword}, '%') and category = #{category}
+ <if test='searchType.equals("users")'>
+  WHERE users LIKE concat('%', #{keyword}, '%')  and category = #{category}
+ </if>
+ 
+</select>
+
+<!-- 게시물 총 갯수 + 검색 적용 -->
+<select id="searchCount" parameterType="hashMap" resultType="int">
+ SELECT count(*) FROM board 
+  
+ <if test='searchType.equals("title")'>
+  WHERE title LIKE concat('%', #{keyword}, '%') 
+ </if>
+ 
+ <if test='searchType.equals("content")'>
+  WHERE content LIKE concat('%', #{keyword}, '%')  
  </if>
  
  <if test='searchType.equals("users")'>
-  WHERE writer LIKE concat('%', #{keyword}, '%')  and category = #{category}
+  WHERE users LIKE concat('%', #{keyword}, '%') 
  </if>
  
 </select>

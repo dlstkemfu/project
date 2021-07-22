@@ -56,10 +56,21 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public int searchCount(String category,String searchType, String keyword) {
-		return boardDAO.searchCount(category, searchType, keyword);
+	public List<Board> viewslist(int displayPost, int postNum, String searchType, String keyword){
+		return boardDAO.viewslist(displayPost, postNum, searchType, keyword);
+	}
+	
+	@Override
+	public int searchcategoryCount(String category,String searchType, String keyword) {
+		return boardDAO.searchcategoryCount(category, searchType, keyword);
 		
 	}
+	
+	@Override
+	public int searchCount(String searchType, String keyword) {
+		return boardDAO.searchCount(searchType, keyword);
+		
+	} 
 	
 	//카테고리 별 게시판
 	

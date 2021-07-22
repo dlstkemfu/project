@@ -115,7 +115,7 @@ public class JqueryController {
 				File.separator + "imgUpload" + ymdPath + File.separator + "s" + File.separator + "s_" + fileName);
 
 		result = boardService.boardwrite(board);
-		ModelAndView mav = new ModelAndView("redirect:/view/dashboard");
+		ModelAndView mav = new ModelAndView("redirect:/view/dashboard?num=1");
 		return mav;
 	}
 

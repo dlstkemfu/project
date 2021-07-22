@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/jstlHeader.jsp" %>    
+<%@ include file="/WEB-INF/views/jstlHeader.jsp"%>
+<%@ include file="/WEB-INF/views/view/boardpage.jsp"%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,20 +23,17 @@
 <body>
 
 				
-<p>환영합니다 ${sessionScope.loginUser.userId }님 <input type="button" value="로그아웃" onclick="javascript:location.href='/jquery/logout'"  />
-<input type="button" value="회원정보수정"
-						onclick="javascript:location.href='membersUpdateView?userId=${sessionScope.loginUser.userId }'" />
-
- <input type="button" value="메인으로" onclick="javascript:location.href='dashboard'" />				
+				
 
 </p>
-<p>알뜰시장</p>
-<div>게시글 리스트</div>
+<p><h3>알뜰시장</h3></p>
+<div>찜목록</div>
 <table>
 <thead><tr>
 <td>제목</td>
 <td>카테고리</td>
 <td>내용</td>
+<td>취소</td>
 </tr></thead>
 
 <c:forEach var="b" items="${result }">
@@ -51,8 +49,8 @@
 </tr>
 </c:forEach>
 </table>
-<li>
- <a href="/view/boardpage?num=1">글 목록(페이징)</a> 
+
+ 
  
  <script type="text/javascript">
  
@@ -94,32 +92,17 @@
 
 					
 				</form>
-				<input type="button" value="카테고리:가구" onclick="comments()" />
+				
  
  
  
  
  
  
- <a href="/view/categoryboard?num=1&category=1">카테고리:가구</a>
- <a href="/view/categoryboard?num=1&category=2">카테고리:의류</a>
- <a href="/view/categoryboard?num=1&category=3">카테고리:전자제품</a>
- <a href="/view/categoryboard?num=1&category=4">카테고리:스포츠</a>
-</li>
+ 
 
-<div>
-  <select name="searchType">
-      <option value="title">제목</option>
-         <option value="content">내용</option>
-      <option value="title_content">제목+내용</option>
-      <option value="users">작성자</option>
-  </select>
-  
-  <input type="text" name="keyword" />
-  
-  <button type="button">검색</button>
- </div>
-<div> <a href="/view/boardwrite">글 작성하기</a></div>
+
+
 
 
 </body>

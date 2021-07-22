@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/views/jstlHeader.jsp"%>
+<%@ include file="/WEB-INF/views/view/boardpage.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,26 +110,7 @@ function commentsUpdate(comtCon,cno){
 				</tr>
 
 
-				<!-- 댓글 -->
-				<hr />
-				댓글 
-				<ul>
-
-
-
-						<li>
-							<div>
-								<p>작성자 :${comments.writer}</p>
-								<p>내용 :<input type="text" placeholder="${comments.comtCon }" id="comtCon" name="comtCon" />
-								<input type="button" value="수정" onclick="commentsUpdateCheck()"/ >
-								<input type="hidden" name="cno" id="cno" value="${comments.cno}">
-									
-								</p>
-							</div>
-						</li>
-					
-					
-				</ul>
+				
 				
 <tr>
 					<td colspan="2"><input type="button" value="수정"
@@ -138,7 +120,29 @@ function commentsUpdate(comtCon,cno){
 						onclick="boardDelete(${result.id})"> <input type="button"
 						value="목록보기" onclick="javascript:location.href='dashboard'" /></td>
 				</tr>
+</table>
+<!-- 댓글 -->
+				
+				댓글
+				<hr /> 
+				<ul>
 
+
+
+						<li>
+							<div>
+								<p>작성자 :${comments.writer}</p>
+								<p>내용 :<input type="text" placeholder="${comments.comtCon }" id="comtCon" name="comtCon" />
+								<input type="button" value="수정" onclick="commentsUpdateCheck()"/ >
+								<input type="button" value="취소" onclick="javascript:location.href='/view/boardDetail?id=${result.id}'"/ >
+								<input type="hidden" name="cno" id="cno" value="${comments.cno}">
+									
+								</p>
+							</div>
+						</li>
+					
+					
+				</ul>
 
 
 
@@ -152,7 +156,7 @@ function commentsUpdate(comtCon,cno){
 
 				
 			</tbody>
-	</table>
+	
 
 </body>
 </html>
