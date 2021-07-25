@@ -26,7 +26,7 @@
     <div class="navbar-header">
      
       <ul class="nav navbar-nav">
-      <li class="active"><a href="/view/dashboard?num=1">알뜰시장</a></li></ul>
+      <li class="active"><a href="/view/dashboard">알뜰시장</a></li></ul>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->

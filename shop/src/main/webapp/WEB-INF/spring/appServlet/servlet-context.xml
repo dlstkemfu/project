@@ -23,6 +23,17 @@
 	
 	<context:component-scan base-package="com.nsb.shop" />
 	
+	<beans:bean id="LoginInterceptor" class="com.nsb.shop.interceptor.LoginInterceptor"></beans:bean>
+    
+    <interceptors>
+        <interceptor>
+            <mapping path="/view/**"/>
+            <beans:ref bean="LoginInterceptor"/>
+        </interceptor>
+    </interceptors>
+    
+
+	
 	<!-- 업로드 패스 설정 --> 
 <beans:bean class="java.lang.String" id="uploadPath">
  <beans:constructor-arg value="C:\JWorkspace\spring\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\shop\resources"/>

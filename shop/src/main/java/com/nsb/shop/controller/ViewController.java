@@ -35,10 +35,16 @@ public class ViewController {
 	@Autowired
 	private CommentsService commentsservice;
 
+	
+	@RequestMapping("view/dashboard")
+	public ModelAndView dashboard() {
+		ModelAndView mav = new ModelAndView();
+		return mav;
+	}
 	// 게시판 목록
 
-	@RequestMapping("view/dashboard")
-	public ModelAndView dashboard(@RequestParam("num") int num,@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
+	@RequestMapping("view/viewlist")
+	public ModelAndView viewlist(@RequestParam("num") int num,@RequestParam(value = "searchType",required = false, defaultValue = "title") String searchType,
 			   @RequestParam(value = "keyword",required = false, defaultValue = "") String keyword) {
 		Page page = new Page();
 		

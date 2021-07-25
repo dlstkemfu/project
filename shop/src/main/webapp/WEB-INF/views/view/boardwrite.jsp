@@ -98,7 +98,7 @@
 				<tr>	
 					<td colspan="2"><input type="button" value="등록" onclick="boardValidation()"
 						 /> <input type="button" value="뒤로"
-						onclick="javascript:location.href='dashboard?num=1'" /></td>
+						onclick="javascript:location.href='dashboard'" /></td>
 				</tr>
 			</tbody>
 		</table>

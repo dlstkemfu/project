@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.inject.Inject;
 import com.nsb.shop.logic.Board;
 import com.nsb.shop.logic.Keep;
 import com.nsb.shop.logic.Comments;
@@ -46,6 +49,10 @@ public class JqueryController {
 
 	@Resource(name = "uploadPath")
 	private String uploadPath;
+	
+	@Autowired
+	BCryptPasswordEncoder pwdEncoder;
+	
 
 	@RequestMapping("jquery/logout")
 	public String logout(HttpSession session) {
@@ -70,7 +77,7 @@ public class JqueryController {
 
 			if (members.getUserId().equals(userIdCheck.getUserId())) {
 				// ID OK
-				if (members.getPassword().equals(userIdCheck.getPassword())) {
+				if (pwdEncoder.matches(members.getPassword(),userIdCheck.getPassword())) {
 					// PW OK
 					session.setAttribute("userId", members.getUserId());
 					session.setAttribute("loginUser", userIdCheck);
@@ -126,7 +133,7 @@ public class JqueryController {
 	public int signUp(Members members) {
 		int result = 0;
 		String col = null;
-
+		
 		col = "userId";
 		Members userIdCheck = userService.getUserOne(members.getUserId(), col);
 		if (userIdCheck != null) {
@@ -140,6 +147,10 @@ public class JqueryController {
 		}
 
 		if (result < 2) {
+			String inputPass =members.getPassword();
+			String pwd = pwdEncoder.encode(inputPass);
+			members.setPassword(pwd);
+		
 			result = userService.userJoin(members);
 			result = 1;
 		}

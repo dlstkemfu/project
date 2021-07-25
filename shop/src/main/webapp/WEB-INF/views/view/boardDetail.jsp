@@ -132,7 +132,7 @@ function boardDelete(id) {
 
 						<input type="button" value="삭제"
 						onclick="boardDelete(${result.id})">
-						 <input type="button" value="목록보기" onclick="javascript:location.href='dashboard?num=1'" />
+						 <input type="button" value="목록보기" onclick="javascript:location.href='dashboard'" />
 						 <input type="button" value="찜하기" onclick="Keep()" /></td>
 				</tr>
 			
